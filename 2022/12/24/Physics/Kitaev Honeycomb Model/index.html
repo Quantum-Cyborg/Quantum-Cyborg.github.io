@@ -1,0 +1,1059 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="碳基机器">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="The Kitaev honeycomb model is an exactly solvable model, which demonstrates the properties of a spin liquid state, specifically the topological nature and the presence of anyonic excitations. It als">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kitaev Honeycomb Model (I)">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2022/12/24/Physics/Kitaev%20Honeycomb%20Model/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="The Kitaev honeycomb model is an exactly solvable model, which demonstrates the properties of a spin liquid state, specifically the topological nature and the presence of anyonic excitations. It als">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/12/24/Physics/Kitaev%20Honeycomb%20Model/Kitaev_Wp.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/12/24/Physics/Kitaev%20Honeycomb%20Model/Kitaev_D_and_u.png">
+<meta property="article:published_time" content="2022-12-24T04:30:00.000Z">
+<meta property="article:modified_time" content="2023-12-26T05:38:29.877Z">
+<meta property="article:tag" content="Topology">
+<meta property="article:tag" content="Spin Liquid">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://quantum-cyborg.github.io/2022/12/24/Physics/Kitaev%20Honeycomb%20Model/Kitaev_Wp.png">
+  
+  
+  
+  <title>Kitaev Honeycomb Model (I) - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Kitaev Honeycomb Model (I)"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        碳基机器
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-24 12:30" pubdate>
+          2022年12月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Kitaev Honeycomb Model (I)</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>The Kitaev honeycomb model is an exactly solvable model, which
+demonstrates the properties of a spin liquid state, specifically the
+topological nature and the presence of anyonic excitations. It also has
+been proposed as a possible platform for fault-tolerant quantum
+computation, due to its topological nature and the presence of anyonic
+excitations. <span id="more"></span> The model consists of a honeycomb lattice with
+a spin-<span class="math inline">\(1/2\)</span> particle sitting on each
+of its vertices. There are three types of links and we label them as
+<span class="math inline">\(x\)</span>, <span
+class="math inline">\(y\)</span> and <span
+class="math inline">\(z\)</span>, as showed in the figure.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Kitaev_Wp.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Kitaev honeycomb model and the
+"plaquette operator" <span class="math inline">\(W_p\)</span></em></td>
+</tr>
+</tbody>
+</table>
+<p>The spins interact with their nearest neighbors via three different
+types of links. Then the interaction can be written as <span
+class="math display">\[
+H=-J_x \sum_\text{x-links}\sigma_j^x\sigma_k^x -J_y
+\sum_\text{y-links}\sigma_j^y\sigma_k^y -J_z
+\sum_\text{z-links}\sigma_j^z\sigma_k^z
+\]</span></p>
+<ul>
+<li>The model is characterized by infinitely many local conserved
+quantities, the integrals of motion.</li>
+</ul>
+<h3 id="plaquette-operator-w_p">Plaquette Operator <span
+class="math inline">\(W_p\)</span></h3>
+<p>The "plaquette operator" <span class="math inline">\(W_p\)</span> is
+defined individually around each hexagonal loop as <span
+class="math display">\[W_p \equiv
+\sigma_1^x\sigma_2^y\sigma_3^z\sigma_4^x\sigma_5^y\sigma_6^z.\]</span>
+Each spin component acts only at a vertex where the external bond is in
+the corresponding direction.</p>
+<ul>
+<li>Each <span class="math inline">\(W_p\)</span> commute with
+Hamiltonian and with each other. Consequently, the <span
+class="math inline">\(W_p\)</span>'s can be independently diagonalized
+with eigenvalues <span class="math inline">\(W_p=\pm 1\)</span>.</li>
+<li>The Hilbert space can thus be split into manifolds defined by
+different values of set <span
+class="math inline">\(\{W_p\}\)</span>.</li>
+<li>For “ferromagnetic” interactions <span
+class="math inline">\(J_{x,y,z}&gt;0\)</span>, the ground state lies in
+the sector <span class="math inline">\(W_p=+1\)</span> for <span
+class="math inline">\(\forall p\)</span>.</li>
+<li>We call the <span class="math inline">\(W_p=-1\)</span> state a
+vortex and the <span class="math inline">\(W_p=+1\)</span> state vortex
+free. The vortices display anyonic statistics (details in the below
+section).</li>
+<li>Degeneracy: Original Hilbert space: <span
+class="math inline">\(2^n\)</span>-dimension (<span
+class="math inline">\(n\)</span> is vertices number). d.o.f. of <span
+class="math inline">\(\{W_p\}\)</span>: <span
+class="math inline">\(n/2\)</span>, number of plaquettes. Hence each
+sector is <span class="math inline">\(2^{n/2}\)</span>-dimensional
+degenerate.</li>
+</ul>
+<h3 id="representing-spins-by-majorana-fermions">Representing spins by
+Majorana fermions</h3>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Kitaev_representation_majorana.png" srcset="/img/loading.gif" lazyload
+alt="Representing Spins by Majorana Fermions" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Representing Spins by Majorana
+Fermions</em></td>
+</tr>
+</tbody>
+</table>
+<p>As shown in the figure above, we mathematically replace the spin
+operator <span class="math inline">\(S^\gamma\)</span> <span
+class="math inline">\((\gamma=x,y,z)\)</span> by two types of Majorana
+operators <span class="math inline">\(b^\gamma\)</span> and <span
+class="math inline">\(c\)</span>: <span
+class="math inline">\(S^\gamma=\frac{i}{2}b^{\gamma}c\)</span>. Here the
+Majorana operators satisfy the algebra <span class="math display">\[
+c^2=b_{\gamma}^2=1,\ \ \ \{b_i^\alpha,b_j^\beta \}=\{b_i^\alpha,c_j
+\}=0.
+\]</span> In this new basis, we describe a spin by two fermionic modes,
+i.e., by four Majorana operators. A <span
+class="math inline">\(2\)</span>-dimensional physical space is
+represented by a <span class="math inline">\(4\)</span>-dimensional Fock
+space. So we have to impose a constraint <span
+class="math inline">\(D=b_j^xb_j^yb_j^zc_j=1\)</span> at each site. This
+constraint is much clear in the fermion representation (we assume that
+there are two fermions living on each lattice site) <span
+class="math display">\[
+f_{i\uparrow}=\frac{b_i^z+ic_i}{2}, \qquad
+f_{i\downarrow}=\frac{b_i^x+ib_i^y}{2}
+\]</span> then the constraint operator becomes <span
+class="math display">\[
+\begin{align}
+D =1 &amp;=(1-2f_{i\downarrow}^\dagger
+f_{i\downarrow})(1-2f_{i\uparrow}^\dagger f_{i\uparrow})  \\
+&amp;= b_j^xb_j^yb_j^zc_j
+\end{align}
+\]</span> Therefore, the constraint of fermions means that the single
+occupancies are projected out, only the vacuum and double occupancies
+are remained.</p>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Kitaev_representation_majorana_1.png" srcset="/img/loading.gif" lazyload
+alt="Representing Spins by Majorana Fermions" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Represent each spin with 2 fermionic
+modes. We choose the state with no fermions to be spin up and the state
+with two fermions to be spin down. Single occupancies are projected out
+of the physical Hilbert space by the operator <span
+class="math inline">\(D\)</span>. [2]</em></td>
+</tr>
+</tbody>
+</table>
+<p>The spin space is called <em>physical space</em> and Majorana space
+is called <em>extended space</em>. The operator <span
+class="math inline">\(D\)</span> is used to determine whether any state
+<span class="math inline">\(|\psi\rangle\)</span> is physical or not.
+<span class="math inline">\(|\psi\rangle\)</span> is physical <span
+class="math inline">\(\leftrightarrow\)</span> <span
+class="math inline">\(D|\psi\rangle=|\psi\rangle\)</span> (<span
+class="math inline">\(D\)</span> is also called the stabilizer). The
+Pauli operators <span class="math inline">\(\sigma^{x/y/z}\)</span> in
+physical space can be represented by <span
+class="math inline">\(\tilde{\sigma}^\gamma = ib^{\gamma}c\)</span> in
+Majorana space.</p>
+<h3 id="hamiltonian-in-the-majorana-representation">Hamiltonian in the
+Majorana representation</h3>
+<p>Each Hamiltonian term <span class="math inline">\(\sigma^\alpha_j
+\sigma^\alpha_k\)</span> becomes <span class="math display">\[
+\sigma^\alpha_j \sigma^\alpha_k \to (ib^\alpha_j c_j)(ib^\alpha_k c_k) =
+-i (ib^\alpha_j b^\alpha_k) c_j c_k.
+\]</span> here <span class="math inline">\(\hat{u}_{jk}=ib^\alpha_j
+b^\alpha_k\)</span> is Hermitian, which we associate with the link <span
+class="math inline">\((j,k)\)</span>. Then the Hamiltonian would be
+<span class="math display">\[
+H=\frac{i}{4} \sum_{j,k} \hat{A}_{jk} c_j c_k
+\]</span> with <span class="math inline">\(\hat{A}_{jk} =
+2J_{\alpha_{jk}}\hat{u}_{jk}\)</span> if <span
+class="math inline">\((j,k)\)</span> are connected and <span
+class="math inline">\(\hat{A}_{jk}=0\)</span> else.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Kitaev_Hamiltonian_in_Majorana.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Graphic representation of
+Hamiltonian</em>[1]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>the bond operator <span
+class="math inline">\(\hat{u}_{jk}=-\hat{u}_{kj}\)</span>.</li>
+<li>the operator <span class="math inline">\(\hat{u}_{jk}\)</span>
+commute with the Hamiltonian and with each other: <span
+class="math inline">\([\hat{u}_{ij},\hat{u}_{kl}]=0\)</span>, <span
+class="math inline">\([\hat{u}_{ij},H]=0\)</span>. So the Hilbert space
+is split into common eigenspaces of <span
+class="math inline">\(\hat{u}_{jk}\)</span>, indexed by the
+corresponding eigenvalues <span class="math inline">\(u_{jk}=\pm
+1\)</span>.</li>
+<li>Fixing the eigenvalues <span class="math inline">\(u_{jk}=\pm
+1\)</span> for each link removes the <span
+class="math inline">\(b\)</span> operators completely from the model.
+This step reduces the initial spin model to a honeycomb lattice model of
+tunnelling <span class="math inline">\(c\)</span> Majorana
+fermions.</li>
+</ul>
+<h3 id="emerging-gauge-field">Emerging gauge field</h3>
+<p>The plaquette operator can be rewritten as <span
+class="math inline">\(W_p=\prod_{\langle ij \rangle \in \partial
+p}\hat{u}_{ij}\)</span>. These fluxes on the plaquette can be considered
+as an artificial magnetic field and <span
+class="math inline">\(u_{ij}\)</span> represents the gauge field,
+because there are many different sets <span
+class="math inline">\(\{u_{ij}\}\)</span> that give rise to the same
+flux sector. Therefore, we identify <span
+class="math inline">\(\hat{u}\)</span> as a <span
+class="math inline">\(Z_2\)</span> gauge field and <span
+class="math inline">\(W_p\)</span> as the associated <span
+class="math inline">\(Z_2\)</span> flux operator (magnetic flux through
+the plaquette <span class="math inline">\(p\)</span>).</p>
+<p>We note that the operators <span class="math inline">\(D_i\)</span>
+and <span class="math inline">\(\hat{u}_{ij}\)</span> do not commute,
+which means they don't have the common set of eigenstates. Hence, the
+sectors labeled by <span class="math inline">\(u_{jk}=\pm 1\)</span> are
+not necessarily part of the physical space. Actually, they anti-commute
+with each other <span class="math display">\[
+\{ \hat{u}_{ij}, D_i \} = 0.
+\]</span> Consequently, the application of the <span
+class="math inline">\(D_i\)</span> operator to an eigenstate of <span
+class="math inline">\(\hat{u}_{ij}\)</span> would invert the sign of
+link operators that connected to the site <span
+class="math inline">\(i\)</span>. For an initial state with <span
+class="math inline">\(u_{jk}=+1\)</span> configuration as illustrated in
+the following figure, The application of <span
+class="math inline">\(D_i\)</span> does not alter the physical plaquette
+operator <span class="math inline">\(W_p\)</span>, the system remains in
+the same vortex sector. In the right side of the figure, we show that
+two vortices are connected by an unphysical string passing through the
+link <span class="math inline">\((ij)\)</span> with eigenvalues <span
+class="math inline">\(u_{ij}=-1\)</span>. Due to the anti-commutation of
+<span class="math inline">\(D_i\)</span> and <span
+class="math inline">\(\hat{u}_{ij}\)</span>, the physical state is an
+equal amplitude superposition of all loops and strings compatible with
+the vortex sector <span class="math inline">\(W\)</span>.</p>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Kitaev_D_and_u.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>The application of a <span
+class="math inline">\(D_i\)</span> operator at a site. And the
+unphysical string between two vortices.</em></td>
+</tr>
+</tbody>
+</table>
+<p>The gauge redundancy comes from the representation of the Majorana
+operators, which enlarged the Hilbert space and led to the emergence of
+a <span class="math inline">\(Z_2\)</span> gauge field. Therefore, the
+system becomes a form in which non-interacting Majorana fermions are
+coupled to the <span class="math inline">\(Z_2\)</span> gauge field, but
+the physical properties of the system depend only on the flux
+sector.</p>
+<h3 id="diagonalization">Diagonalization</h3>
+<p>We focus on the case where all <span
+class="math inline">\(u_{ij}=+1\)</span>, which corresponds to the
+<strong>absence of any vortices</strong> (that is the ground state).
+With a Fourier transformation <span class="math display">\[
+a_r = \sum_p e^{-i \mathrm{p}\cdot\mathrm{r}} a_p,
+\]</span> here we use <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> to represent the Majorana fermions
+placing on the two sublattice. The Hamiltonian would have the form <span
+class="math display">\[
+\begin{align}
+H &amp;= \frac{i}{4} \sum_\mathrm{p} f(\mathrm{p}) a_{-\mathrm{p}}
+b_\mathrm{p} +h.c. \\
+&amp;= \frac{i}{4} \sum_\mathrm{p} \left(2J\sum_{\alpha=1,2,3} e^{-i
+\mathrm{p}\cdot\mathrm{s}_\alpha} \right)  a_{-\mathrm{p}} b_\mathrm{p}
++h.c. \\
+&amp;= \frac{1}{4} \sum_{\mathbf{p}}\left(a_{\mathbf{p}}^{\dagger} \ \ \
+b_{\mathbf{p}}^{\dagger}\right)\left(\begin{array}{cc}
+0 &amp; if(\mathbf{p}) \\
+-if(\mathbf{p})^* &amp; 0
+\end{array}\right)\left(\begin{array}{l}
+a_{\mathbf{p}} \\
+b_{\mathbf{p}}
+\end{array}\right)
+\end{align}
+\]</span> Then the eigenvalues of <span
+class="math inline">\(H(\mathbf{p})\)</span> are given by <span
+class="math display">\[
+\epsilon(\mathbf{p}) = \pm |f(\mathbf{p})|
+\]</span></p>
+<p><strong>Another method to diagonalize.</strong> Chen and Nussinov
+show that within the ground state sector <span
+class="math inline">\(W_p=\pm 1\)</span>, <span
+class="math inline">\(\forall p\)</span>, the Hamiltonian can be mapped
+to a 2D <span class="math inline">\(p\)</span>-wave Fermi superfluid
+with Hamiltonian <span class="math display">\[
+\hat{H}=\sum_q \epsilon_q a_q^{\dagger} a_q+\frac{i
+\Delta_q}{2}\left(a_q^{\dagger} a_{-q}^{\dagger}+\text { H.c. }\right)
+\]</span> where <span class="math display">\[
+\begin{aligned}
+&amp; \epsilon_q \equiv 2 J_z-2 J_z \cos q_x-2 J_y \cos q_y \\
+&amp; \Delta_q \equiv 2 J_x \sin q_x+2 J_y \sin q_y
+\end{aligned}
+\]</span> by the standard BCS procedure, then the quasiparticle
+excitation spectrum has the usual form <span class="math display">\[
+E_q=\sqrt{\epsilon_q^2+\Delta_q^2}
+\]</span></p>
+<h3 id="ground-state-and-phases">Ground state and phases</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Kitaev_phase_diagram.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Phase diagram</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="non-abelian-anyons">Non-Abelian Anyons</h3>
+<p>Non-Abelian anyons are defined in terms of their non-trivial
+evolution under their position exchange. This evolution happens in the
+degenerate ground state of the system.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Honeycomb Lattice</th>
+<th></th>
+<th>Ising Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ground state</td>
+<td><span class="math inline">\(\leftrightarrow\)</span></td>
+<td><span class="math inline">\(1\)</span>, Vaccum</td>
+</tr>
+<tr class="even">
+<td>Vortex</td>
+<td><span class="math inline">\(\leftrightarrow\)</span></td>
+<td><span class="math inline">\(\sigma\)</span>, Non-Abelian Anyon</td>
+</tr>
+<tr class="odd">
+<td>Fermionic excitation</td>
+<td><span class="math inline">\(\leftrightarrow\)</span></td>
+<td><span class="math inline">\(\psi\)</span>, Fermion</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<div id="refer-coupler">
+
+</div>
+<ul>
+<li>[1] <a
+target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0003491605002381">Kitaev,
+Alexei. "Anyons in an exactly solved model and beyond." <em>Annals of
+Physics</em> 321.1 (2006): 2-111.</a></li>
+<li>[2] <a
+target="_blank" rel="noopener" href="https://www.amazon.com/Introduction-Topological-Quantum-Computation-Jiannis/dp/1107005043">Jiannis
+K. Pachos, <em>Introduction to topological quantum
+computation</em></a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Physics/" class="category-chain-item">Physics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Topology/">#Topology</a>
+      
+        <a href="/tags/Spin-Liquid/">#Spin Liquid</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kitaev Honeycomb Model (I)</div>
+      <div>https://quantum-cyborg.github.io/2022/12/24/Physics/Kitaev Honeycomb Model/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>碳基机器</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/24/Life/New_Zealand_Life/" title="存点图 记录生活">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">存点图 记录生活</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/08/Physics/CS_fileld_theory_IQHE/" title="非常简略的笔记：Chern-Simons Field Theory for IQHE">
+                        <span class="hidden-mobile">非常简略的笔记：Chern-Simons Field Theory for IQHE</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

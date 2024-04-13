@@ -1,0 +1,945 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mario">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="对于一个偶数维的流形\(M\)，我们可以赋予其一个(Almost)复结构\(I \in \Lambda M^1 \otimes TM^1\): \[I:TM \rightarrow TM,\] 这是一个切空间自身的同构映射，并且满足\(I^2&#x3D;-1\)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复流形的形变">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2021/09/07/Math/Deformation%20theory/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="对于一个偶数维的流形\(M\)，我们可以赋予其一个(Almost)复结构\(I \in \Lambda M^1 \otimes TM^1\): \[I:TM \rightarrow TM,\] 这是一个切空间自身的同构映射，并且满足\(I^2&#x3D;-1\)。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-07T04:00:53.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:20:50.029Z">
+<meta property="article:tag" content="Differential Geometry">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>复流形的形变 - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="复流形的形变"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mario
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-07 12:00" pubdate>
+          2021年9月7日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">复流形的形变</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>对于一个偶数维的流形<span
+class="math inline">\(M\)</span>，我们可以赋予其一个(Almost)复结构<span
+class="math inline">\(I \in \Lambda M^1 \otimes TM^1\)</span>: <span
+class="math display">\[I:TM \rightarrow TM,\]</span>
+这是一个切空间自身的同构映射，并且满足<span
+class="math inline">\(I^2=-1\)</span>。<span id="more"></span>因此如果我们考虑复化的切空间，我们可以利用<span
+class="math inline">\(I\)</span>的本征值<span class="math inline">\(\pm
+i\)</span>将其分为全纯部分与反全纯部分。比如说，考虑一组全纯坐标<span
+class="math inline">\(z^{\mu} = x^{\mu} + i
+y^{\mu}\)</span>的话，那么复结构在这组坐标下满足： <span
+class="math display">\[J \frac{\partial}{\partial x^{\mu}} =
+\frac{\partial}{\partial y^{\mu}},\quad J \frac{\partial}{\partial
+y^{\mu}} = -\frac{\partial}{\partial x^{\mu}},\]</span> 或者： <span
+class="math display">\[J \frac{\partial}{\partial z^{\mu}} = i
+\frac{\partial}{\partial z^{\mu}},\quad J \frac{\partial}{\partial
+\bar{z}^{\mu}} = -i \frac{\partial}{\partial
+\bar{z}^{\mu}}.\]</span></p>
+<p>通常来讲，这个复结构必须要能够扩展到整个复流形上才可以，也就是要满足所谓的可积条件，也就是<span
+class="math inline">\(I\)</span>和自身的李括号为零。这里我们假定<span
+class="math inline">\(I\)</span>是可积的，那么给定了一个<span
+class="math inline">\(I\)</span>就给定了流形上的一个复结构。我们此处感兴趣的是给定流形<span
+class="math inline">\(M\)</span>上的所有不等价的复结构，因此我们需要考虑流形之间的微分同胚映射。考虑两个不同的复流形<span
+class="math inline">\((M,I)\)</span>以及<span
+class="math inline">\((M&#39;,I&#39;)\)</span>，并且存在一个微分同胚映射<span
+class="math inline">\(F:M\rightarrow
+M&#39;\)</span>，我们记映射的Jacobi矩阵为<span class="math inline">\(dF
+\in \Lambda M^1 \otimes TM&#39;^1\)</span>，它会把<span
+class="math inline">\(M\)</span>上的一个矢量映射为<span
+class="math inline">\(M&#39;\)</span>上相对应的矢量。那么如果两个流形的复结构满足<span
+class="math inline">\(dF \circ I = I&#39; \circ
+dF\)</span>的话，那么这两个我们就称这两个流形是同构的。同样地，如果对于给定的流形<span
+class="math inline">\(M\)</span>，如果有两个不同的复结构<span
+class="math inline">\(I\)</span>和<span
+class="math inline">\(I&#39;\)</span>，它们两者是可以通过一个自同构映射<span
+class="math inline">\(F\)</span>联系起来的： <span
+class="math display">\[I&#39; = dF \circ I \circ (dF)^{-1},\]</span>
+那么我们就称这两个复结构<span class="math inline">\(I\)</span>和<span
+class="math inline">\(I&#39;\)</span>是等价的。</p>
+<p>接下来我们就可以定义复流形<span
+class="math inline">\(M\)</span>的模空间。定义一个集合<span
+class="math inline">\(\mathcal{A}(M)\)</span>为<span
+class="math inline">\(M\)</span>上的所有可积复结构的集合，那么<span
+class="math inline">\(M\)</span>的模空间则定义为<span
+class="math inline">\(\mathcal{M} =
+\mathcal{A}(M)/\sim\)</span>，其中等价类<span
+class="math inline">\(\sim\)</span>是上述微分同胚所诱导的。令人惊讶的是，模空间实际上也是一个流形，并且在数学物理里面有很大的作用。接下来我们考虑一个最自然的问题，即模空间作为一个流形来讲，它的维度是多少？为了探究它的维度，我们需要考虑模空间<span
+class="math inline">\(\mathcal{M}\)</span>任意一点上的切空间，或者说给定复结构<span
+class="math inline">\(I\)</span>，它的不等价的无穷小形变是多少维的。</p>
+<p>为了考虑这个问题，我们把<span
+class="math inline">\(M\)</span>上的复化切空间分解为全纯部分和反全纯部分<span
+class="math inline">\(T_{\mathbb{C}}M = TM^{1,0} \oplus
+TM^{0,1}\)</span>，并且<span class="math inline">\(I\)</span>在<span
+class="math inline">\(TM^{1,0}\)</span>和<span
+class="math inline">\(TM^{0,1}\)</span>上的本征值分别为<span
+class="math inline">\(i\)</span>和<span
+class="math inline">\(-i\)</span>。令<span
+class="math inline">\(I(t)\)</span>为一个连续的可积复结构的家族，并且满足<span
+class="math inline">\(I(0)=I\)</span>。那么对于任何<span
+class="math inline">\(t\)</span>，复化切空间可以根据复结构<span
+class="math inline">\(I(t)\)</span>分解为<span
+class="math inline">\(T_{\mathbb{C}}M = TM_t^{1,0} \oplus
+TM_t^{0,1}\)</span>。现在我们考虑<span
+class="math inline">\(t\)</span>是无穷小的情况，也就是说让复结构经历一个无穷小的变换。在这个无穷小变换下，原先为全纯的切矢量会混合一小部分反全纯的分量，从而在新的复结构下保持全纯。因此我们引入<span
+class="math inline">\(\phi(t) \in \Lambda
+M^{0,1}(TM^{1,0})\)</span>（切矢量取值的微分形式）满足： <span
+class="math display">\[\phi(t): TM^{0,1} \rightarrow TM^{1,0}\quad
+\textrm{使得}: v+\phi(t)(v) \in TM^{0,1}_{t},\]</span> 其中<span
+class="math inline">\(v\in
+TM^{0,1}\)</span>是任意反全纯的切矢量。对于<span
+class="math inline">\(t\)</span>非常小的时候，我们可以考虑级数展开：
+<span class="math display">\[\phi(t) = \phi_1 t + \phi_2 t^2 +
+\cdots,\]</span> 其中<span class="math inline">\(\phi_i \in \Lambda
+M^{0,1}(TM^{1,0})\)</span>。接下来，为了由<span
+class="math inline">\(\phi(t)\)</span>给出的新的复结构仍然是可积的，我们需要验证：
+<span class="math display">\[ \left[ TM^{0,1}_t , TM^{0,1}_t \right]
+\subset TM^{0,1}_t,\]</span>
+也就是反全纯（或者全纯）切矢量的李括号仍然是反全纯（或者全纯）。</p>
+<p>我们可以把上述可积性条件利用<span
+class="math inline">\(\phi(t)\)</span>表示出来。实际上，我们可以将李括号的从切矢量扩展到所有切矢量取值的微分形式上：
+<span class="math display">\[[\quad,\quad]: \Lambda^{m,n}(T_p) \times
+\Lambda^{p,q}(T_p) \rightarrow \Lambda^{m+p,n+q}(T_p),\]</span>
+使得对于<span class="math inline">\(\alpha = \alpha_I \otimes
+v_I\)</span>，与<span class="math inline">\(\beta = \beta_J \otimes
+w_J\)</span>，两者之间的李括号满足： <span class="math display">\[
+[\alpha , \beta ] = \alpha_I \wedge \beta_J [v_I , w_J].\]</span>
+接下来将<span
+class="math inline">\(\phi\)</span>写为分量形式（我们把之后的<span
+class="math inline">\(t\)</span>省略掉）： <span
+class="math display">\[\phi = \phi_{ij} d \bar{z}_i \otimes
+\frac{\partial}{\partial z_j},\]</span> 那么可积性条件为： <span
+class="math display">\[\left[ \frac{\partial}{\partial \bar{z}_i} +
+\phi_{ik} \frac{\partial}{\partial z_k} , \frac{\partial}{\partial
+\bar{z}_j} + \phi_{jl} \frac{\partial}{\partial z_l} \right] \in
+T_t^{0,1},\]</span> 进一步可以写为： <span class="math display">\[\left(
+\left[ \frac{\partial}{\partial \bar{z}_i} , \phi_{jk}
+\frac{\partial}{\partial z_k} \right] + \left[\phi_{ik}
+\frac{\partial}{\partial z_k} , \frac{\partial}{\partial \bar{z}_j}
+\right] + \left[ \phi_{ik} \frac{\partial}{\partial z_k} , \phi_{jl}
+\frac{\partial}{\partial z_l} \right] \right) \in T_t^{0,1}.\]</span>
+利用李括号的性质，例如 <span class="math display">\[\left[
+\frac{\partial}{\partial \bar{z}_i} , \phi_{jk} \frac{\partial}{\partial
+z_k}\right] = \frac{\partial \phi_{jk}}{\partial \bar{z}_i}
+\frac{\partial}{\partial z_k},\quad \left[\phi_{ik}
+\frac{\partial}{\partial z_k} , \frac{\partial}{\partial \bar{z}_j}
+\right] = -\frac{\partial \phi_{ik}}{\partial \bar{z}_j}
+\frac{\partial}{\partial z_k},\]</span> 我们有： <span
+class="math display">\[\begin{aligned}
+    &amp;\left[ \frac{\partial}{\partial \bar{z}_i} , \phi_{jk}
+\frac{\partial}{\partial z_k} \right] + \left[\phi_{ik}
+\frac{\partial}{\partial z_k} , \frac{\partial}{\partial \bar{z}_j}
+\right] \nonumber \\
+    =&amp;\left(\frac{\partial \phi_{jk}}{\partial
+\bar{z}_i}  -\frac{\partial \phi_{ik}}{\partial \bar{z}_j}\right)
+\frac{\partial}{\partial z_k} \nonumber \\
+    =&amp; (\bar{\partial}\phi) \left(\frac{\partial}{\partial
+\bar{z}_i} , \frac{\partial}{\partial \bar{z}_j}
+\right),\end{aligned}\]</span> 其中<span
+class="math inline">\(\bar{\partial}\phi \in \Lambda
+M^{0,2}(TM^{1,0})\)</span>。另一方面，我们有： <span
+class="math display">\[\left[ \phi_{ik} \frac{\partial}{\partial z_k} ,
+\phi_{jl} \frac{\partial}{\partial z_l} \right] = [\phi ,
+\phi]\left(\frac{\partial}{\partial \bar{z}_i} ,
+\frac{\partial}{\partial \bar{z}_j} \right),\]</span>
+因此可积性条件可以写为： <span
+class="math display">\[((\bar{\partial}\phi) + [\phi , \phi])
+\left(\frac{\partial}{\partial \bar{z}_i} , \frac{\partial}{\partial
+\bar{z}_j} \right) \in T_t^{0,1}.\]</span> 但是方程左边是属于<span
+class="math inline">\(T^{1,0}\)</span>的，而当<span
+class="math inline">\(t\)</span>十分小的时候<span
+class="math inline">\(T^{0,1}_t\)</span>占据主导地位的是<span
+class="math inline">\(T^{0,1}\)</span>分量，因此两者不属于同一个空间，唯一的可能是在<span
+class="math inline">\(t\)</span>十分小的时候： <span
+class="math display">\[(\bar{\partial}\phi) + [\phi , \phi] =
+0.\]</span> 这个被称为Maurer-Cartan方程。如果我们考虑关于<span
+class="math inline">\(t\)</span>的级数展开<span
+class="math inline">\(\phi = \phi_i
+t^i\)</span>，那么上述方程可以写为一系列的递推方程： <span
+class="math display">\[\begin{aligned}
+    &amp;t^1: \quad 0 = \bar{\partial} \phi_1, \nonumber \\
+    &amp;t^2: \quad 0 = \bar{\partial} \phi_2 + [\phi_1,\phi_1]
+\nonumber \\
+    &amp;\cdots\end{aligned}\]</span>
+如果我们只考虑无穷小变换的话，或者模空间的切矢量，那么第一个方程就足够了，它告诉我们<span
+class="math inline">\(\phi_1\in \Lambda
+M^{0,1}(TM^{1,0})\)</span>作为一个反全纯1-形式场，必须是闭的。</p>
+<p>因此对于任意<span class="math inline">\(\Lambda
+M^{0,1}(TM^{1,0})\)</span>中的一个闭的元素，我们都可以构造出<span
+class="math inline">\(\phi_1\)</span>，也就是模空间的一个切矢量，并且通过递推关系式得到其余的<span
+class="math inline">\(\phi_i\)</span>。但是我们仍然需要探究在什么情况下，两个<span
+class="math inline">\(\phi_1\)</span>在微分同胚的意义下给出同样的切矢量场。</p>
+<p>我们假设<span class="math inline">\(F_t\)</span>是<span
+class="math inline">\(M\)</span>上的一个单参微分同胚群，我们考虑在<span
+class="math inline">\(t=0\)</span>时上述单参微分同胚群生成的切矢量场，记为<span
+class="math inline">\(F_i \frac{\partial}{\partial
+x^i}\)</span>。详细地来说，在<span
+class="math inline">\(M\)</span>上的任一点<span
+class="math inline">\(p\)</span>，我们可以考虑一条轨道曲线<span
+class="math inline">\(F_t(p)\)</span>，它在<span
+class="math inline">\(t=0\)</span>点的切矢量对应的就是上述切矢量场在<span
+class="math inline">\(p\)</span>点的取值。我们将上述矢量场记为： <span
+class="math display">\[\frac{d F_t}{d t}|_{t=0} = F_i
+\frac{\partial}{\partial x^i} \in \Lambda M^{0}(TM),\]</span>
+这里的<span class="math inline">\(\Lambda
+M^{0}(TM)\)</span>意味切矢量取值的0-形式场，也就是切矢量场。</p>
+<p>对于一个复流形<span
+class="math inline">\((M,I)\)</span>上的单参微分同胚群<span
+class="math inline">\(F_t\)</span>，我们可以将<span
+class="math inline">\(t=0\)</span>点的切矢量场用复参数记为： <span
+class="math display">\[f_i \frac{\partial}{\partial z^i} + \bar{f}_i
+\frac{\partial}{\partial \bar{z}^i},\]</span> 其中<span
+class="math inline">\(f_i\)</span>与<span
+class="math inline">\(\bar{f}_i\)</span>互为复共轭。给定一个切矢量场，我们可以考虑由它生成的无穷小变换<span
+class="math inline">\(F_t\)</span>。根据之前的讨论，新的复结构为<span
+class="math inline">\(I&#39; = dF_t \circ I \circ
+(dF_t)^{-1}\)</span>，以及对应的切空间的全纯部分为： <span
+class="math display">\[TM^{0,1}_t = dF_t (TM^{0,1}),\]</span>
+回忆起<span class="math inline">\(dF_t \in \Lambda M \otimes
+TM\)</span>为Jacobi矩阵。坐标的无穷小变换可以写为： <span
+class="math display">\[\begin{aligned}
+    z&#39;_i &amp;= z_i + t f_i(z,\bar{z}) + \mathcal{O}(t^2),\nonumber
+\\
+    \bar{z}&#39;_i &amp;= \bar{z}_i + t \bar{f}_i(z,\bar{z}) +
+\mathcal{O}(t^2),\end{aligned}\]</span> 接下来我们可以计算相应的<span
+class="math inline">\(\phi(t)\)</span>，我们有： <span
+class="math display">\[\begin{aligned}
+    \frac{\partial}{\partial \bar{z}&#39;_i} &amp;= \frac{\partial
+\bar{z}_j}{\partial \bar{z}&#39;_i} \frac{\partial}{\partial \bar{z}_j}
++ \frac{\partial z_j}{\partial \bar{z}&#39;_i} \frac{\partial}{\partial
+z_j} \nonumber \\
+    &amp;= \frac{\partial}{\partial \bar{z}_i} - t \frac{\partial
+f_j(z,\bar{z})}{\partial \bar{z}_i} \frac{\partial}{\partial
+z_j},\end{aligned}\]</span> 因此我们有 <span
+class="math display">\[(\phi_1)_{ij} = - \frac{\partial
+f_j(z,\bar{z})}{\partial \bar{z}_i},\]</span> 即 <span
+class="math display">\[\phi_1 = \bar{\partial} \left(
+-f_j(z,\bar{z})\frac{\partial}{\partial z_j}\right),\]</span>
+因此为Exact的。反过来，如果<span
+class="math inline">\(\phi_1\)</span>是Exact的，那么我们可以得到一个切矢量场并诱导出一个微分同胚变换，而相应的复结构<span
+class="math inline">\(I&#39;\)</span>则可以由这个微分同胚诱导的来，因此和原来的复结构等价。</p>
+<p>结合上面的讨论，我们可以得出结论：给定一个复流形<span
+class="math inline">\(M\)</span>，它的模空间的切矢量和<span
+class="math inline">\(TM^{1,0}\)</span>取值的上同调群<span
+class="math inline">\(H^{0,1}(TM^{1,0})\)</span>之间有一一对应的关系。或者利用Dolbeault上同调和C<span
+class="math inline">\(\check{\textrm{e}}\)</span>ch上同调之间对应关系，我们也可以将上述同调群记为<span
+class="math inline">\(H^1(TM^{1,0})\)</span>，此处应该将<span
+class="math inline">\(TM^{1,0}\)</span>理解为<span
+class="math inline">\(M\)</span>上的一个层。通常我们也将全纯部分的复切空间记为<span
+class="math inline">\(\mathcal{T}M\)</span>。</p>
+<p>接下来我们来考虑二维复流形，也就是黎曼面的模空间的维度，为此我们需要利用Grothendieck-Riemann-Rock公式。对于底流形为<span
+class="math inline">\(M\)</span>一个复的矢量丛<span
+class="math inline">\(E\)</span>，我们可以考虑<span
+class="math inline">\(M\)</span>上的层取值的C<span
+class="math inline">\(\check{\textrm{e}}\)</span>ch上同调群。原则上，这个上同调群并不好计算，我们可以考虑一个特殊不变量，即矢量丛<span
+class="math inline">\(E\)</span>的欧拉数<span
+class="math inline">\(\chi(E) = \sum_k (-1)^k \dim
+H^k(E)\)</span>，它可以利用上述所说的Grothendieck-Riemann-Rock公式来计算：
+<span class="math display">\[\chi(E) = \int_M ch(E) \wedge
+td(E),\]</span> 其中<span
+class="math inline">\(ch(E)=1+c_1(E)+c_2(E)+\cdots\)</span>是陈类，<span
+class="math inline">\(td(M)=1+\frac{1}{2}c_1(M)+\cdots\)</span>是Todd类。对于二维黎曼面来说，利用上述公式我们有：
+<span class="math display">\[\begin{aligned}
+    \dim_{\mathbb{C}}H^0(\mathcal{T}M) -
+\dim_{\mathbb{C}}H^1(\mathcal{T}M) &amp;=
+\int_X(1+c_1(\mathcal{T}M))(1+\frac{1}{2}c_1(\mathcal{T}M)) \nonumber \\
+    &amp;= \frac{3}{2}\int_M c_1(\mathcal{T}M) =
+3-3g,\end{aligned}\]</span> 其中最后一步是因为<span
+class="math inline">\(\int_M c_1(\mathcal{T}M) =
+2-2g\)</span>是黎曼面的欧拉示性数（注意我们谈及陈类的时候，都是对复矢量丛来谈的），因此我们有：
+<span class="math display">\[\dim_{\mathbb{C}}H^1(\mathcal{T}M) = 3g-3 +
+\dim_{\mathbb{C}}H^0(\mathcal{T}M).\]</span> 而后者<span
+class="math inline">\(H^0(\mathcal{T}M)\)</span>对应的是黎曼面上的全局的切矢量场，这个实际上是黎曼面上的共形Killing矢量场（global共形变换的生成元，注意到二维黎曼面上共形变换等价于全纯变换）。当<span
+class="math inline">\(g=0\)</span>的时候，球面上一共有六个（复三维）不等价的共形Killing矢量场，因此<span
+class="math inline">\(H^0(\mathcal{T}M)=3\)</span>，模空间的维度为零；当<span
+class="math inline">\(g=1\)</span>的时候，圆环面上有两个（复一维）共形Killing矢量场，因此<span
+class="math inline">\(H^0(\mathcal{T}M)=1\)</span>，模空间维度为1。对于<span
+class="math inline">\(g&gt;1\)</span>的情况，<span
+class="math inline">\(H^0(\mathcal{T}M)=0\)</span>，从而模空间的维度为<span
+class="math inline">\(3g-3\)</span>。</p>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>Daniel Huybrechts, Complex
+Geometry: An introduction
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Differential-Geometry/">#Differential Geometry</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>复流形的形变</div>
+      <div>https://quantum-cyborg.github.io/2021/09/07/Math/Deformation theory/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mario</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/08/Physics/MPO/" title="DMRG附录：用“自动机”来计算MPO">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DMRG附录：用“自动机”来计算MPO</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/03/CS/Blog/Hexo%20Problems/" title="Hexo 踩坑记录">
+                        <span class="hidden-mobile">Hexo 踩坑记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

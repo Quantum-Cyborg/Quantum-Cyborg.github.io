@@ -1,0 +1,1157 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mario">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如果一个玻色理论的拉氏量仅仅包含时间的一次导数的话，比如Chern-Simons理论，那么在正则量子化的过程中，我们会发现广义动量实际上和广义坐标相重合了，那么相空间实际上就是坐标空间，并且在考虑量子化之后，相空间会变成一个非对易几何。具体地说，考虑如下一个作用量：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="辛几何随笔">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2022/02/09/Math/Symplectic/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="如果一个玻色理论的拉氏量仅仅包含时间的一次导数的话，比如Chern-Simons理论，那么在正则量子化的过程中，我们会发现广义动量实际上和广义坐标相重合了，那么相空间实际上就是坐标空间，并且在考虑量子化之后，相空间会变成一个非对易几何。具体地说，考虑如下一个作用量：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-09T03:33:53.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:21:33.252Z">
+<meta property="article:tag" content="Geometry">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>辛几何随笔 - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="辛几何随笔"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mario
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-09 11:33" pubdate>
+          2022年2月9日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">辛几何随笔</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>如果一个玻色理论的拉氏量仅仅包含时间的一次导数的话，比如Chern-Simons理论，那么在正则量子化的过程中，我们会发现广义动量实际上和广义坐标相重合了，那么相空间实际上就是坐标空间，并且在考虑量子化之后，相空间会变成一个非对易几何。具体地说，考虑如下一个作用量：<span id="more"></span>
+<span class="math display">\[S = \int d t \lambda_i (\phi) \frac{d
+\phi^i}{d t},\]</span> 其中<span
+class="math inline">\(\phi^i\)</span>是广义坐标，正则动量实际上正是<span
+class="math inline">\(\lambda_i(\phi)\)</span>并且是<span
+class="math inline">\(\phi^i\)</span>的一个函数，因此相空间和坐标空间实际上是相同的。
+在相空间上我们可以找到一个非退化（处处非零）的2-形式场，对作用量进行变分可以得到：
+<span class="math display">\[\delta S = \int d t (\partial_i \lambda_j -
+\partial_j \lambda_i ) \delta \phi^i \frac{d \phi^j}{d t},\]</span>
+如果作用量是非退化的，那么我们就可以得到一个非退化的2-形式场： <span
+class="math display">\[\omega = (\partial_i \lambda_j - \partial_j
+\lambda_i ) d\phi^i \wedge d \phi^j,\]</span>
+我们称之为相空间上的辛形式。</p>
+<p>在这里我们介绍一下辛几何相关的内容，我们可以想像成是物理里面的相空间。对于一个辛流形，我们有一个非退化（处处非零）的闭2-形式场：
+<span class="math display">\[\omega = \frac{1}{2} \omega_{\mu \nu} d
+x^{\mu} d x^{\nu},\]</span> 其中<span class="math inline">\(\mu =
+1,\cdots ,2n\)</span>，<span
+class="math inline">\(n\)</span>是流行的维度，我们称<span
+class="math inline">\(\omega\)</span>为流形上的辛形式。利用辛形式我们可以定义柏松括号，也就是对于辛流形（相空间）上的任何两个函数<span
+class="math inline">\(f_1,f_2\)</span>，我们有： <span
+class="math display">\[\{ f_1 , f_2 \} = \omega^{\mu \nu} \frac{\partial
+f_1}{\partial x^{\mu}}\frac{\partial f_2}{\partial x^{\nu}},\]</span>
+其中上指标的<span class="math inline">\(\omega^{\mu
+\nu}\)</span>是辛形式的逆。在辛流形（相空间）上，对于一个局域的坐标片，我们都可以将辛形式写为标准形式，也就是可以选取一组局域坐标<span
+class="math inline">\((p_i,q^i)\)</span>使得： <span
+class="math display">\[\omega = \sum_{i=1}^{n} d p_i \wedge d
+q^i.\]</span></p>
+<h1 id="动量映射moment-map">动量映射（Moment map）</h1>
+<p>通常在经典力学里面，给定一个对称性我们可以得到相应的守恒量，比如平移和转动分别对应的是动量和角动量。动量映射是两者在辛流形（相空间）上面的一个推广。</p>
+<p>令<span
+class="math inline">\((M,\omega)\)</span>为一个相空间，回忆起给定相空间上的任意一个函数<span
+class="math inline">\(h\)</span>我们可以构造一个所谓的哈密顿矢量场 <span
+class="math inline">\(V\)</span> 使得 <span
+class="math inline">\(\iota(V) \omega = d h\)</span>： <span
+class="math display">\[V(h)^i = \omega^{ij} \partial_j h,\]</span>
+其中<span
+class="math inline">\(\iota\)</span>是缩并算符。这个矢量场生成的微分同胚变换是保持辛形式不变的：
+<span class="math display">\[\begin{aligned}
+    \mathcal{L}_{V} \omega &amp;= (d \iota (V) + \iota(V) d) \omega
+\nonumber \\
+    &amp;= d \iota(V) \omega \nonumber \\
+    &amp;= d (V^i \omega_{ij} dx^j) \nonumber \\
+    &amp;= d (\omega^{ik} \omega_{ij} \partial_k h d x^j) \nonumber \\
+    &amp;= d^2 h = 0.\end{aligned}\]</span>
+实际上正则变换的生成母函数就是上述的例子，它对应的矢量场生成的正是正则变换。再继续之前我们先提及一些柏松括号以及哈密顿矢量场的性质，如果我们给定两个函数<span
+class="math inline">\(f,g\)</span>，我们有 <span
+class="math display">\[\begin{aligned}
+    \{ f , g \} &amp;= \omega^{ij} \frac{\partial f}{\partial
+x^{i}}\frac{\partial g}{\partial x^{j}}   \nonumber \\
+    &amp;= \frac{\partial f}{\partial x^{i}} V(g)^{i} \nonumber \\
+    &amp;=\mathcal{L}_{V(g)} f,\end{aligned}\]</span>
+进一步地，我们还可以有： <span class="math display">\[\begin{aligned}
+    \{ f , g \} &amp;= \omega^{ij} \frac{\partial f}{\partial
+x^{i}}\frac{\partial g}{\partial x^{j}}   \nonumber \\
+    &amp;= \frac{\partial f}{\partial x^{i}} V(g)^{i} \nonumber \\
+    &amp;=-\omega_{ik} \omega^{kj}\frac{\partial f}{\partial x^{j}}
+V(f)^{i}\nonumber \\
+    &amp;= \omega_{ij} V(f)^i V(g)^j \nonumber \\
+    &amp; \equiv \omega(V(f),V(g)).\end{aligned}\]</span> 函数<span
+class="math inline">\(f,g\)</span>的柏松括号定义了一个新的函数，我们也可以求出它的哈密顿矢量场，其结果为：
+<span class="math display">\[\begin{aligned}
+    V(\{f,g\}) = - [V(f) , V(g)],\end{aligned}\]</span>
+其中后者为两个矢量场之间的李括号。</p>
+<p>接下来，如果有一个作用在流形<span
+class="math inline">\(M\)</span>上的李群<span
+class="math inline">\(G\)</span>，它保持辛形式不变： <span
+class="math display">\[g^* (\omega) = \omega,\quad \forall g \in
+G,\]</span> 那么如果<span class="math inline">\(T\in
+\mathbf{g}\)</span>是一个生成元，由它生成的无穷小变换的切矢量场记为<span
+class="math inline">\(\xi=\xi(T)\)</span>，那么我们有： <span
+class="math display">\[\mathcal{L}_{\xi} \omega = (d \iota(\xi) + \iota
+(\xi) d) \omega = d (\iota(\xi) \omega) =0,\]</span>
+因此如果我们假定<span
+class="math inline">\(H^1_{DR}(M)=0\)</span>的话，那么我们可以令： <span
+class="math display">\[\iota(\xi) \omega = d \mu,\]</span> 其中<span
+class="math inline">\(\mu\)</span>是流形<span
+class="math inline">\(M\)</span>上的一个全局定义的函数。实际上由上述构造我们可以看出，这个函数是依赖于生成元<span
+class="math inline">\(T\)</span>的，我们记为<span
+class="math inline">\(\mu(p;T)\)</span>，其中<span
+class="math inline">\(p\)</span>是流形<span
+class="math inline">\(M\)</span>上的坐标。在哈密顿体系里面，这个<span
+class="math inline">\(\mu\)</span>实际上正是上述生成元<span
+class="math inline">\(T\)</span>对称性的守恒荷，对于任何一个函数<span
+class="math inline">\(f\)</span>，利用柏松括号我们可以得到： <span
+class="math display">\[\begin{aligned}
+    \{ \mu , f \} &amp;= \omega^{ij} \partial_i \mu \partial_j f
+\nonumber \\
+    &amp;= \omega^{ij} \xi^k \omega_ki \partial_j f \nonumber \\
+    &amp;= \xi^i \partial_i f \nonumber \\
+    &amp;= \mathcal{L}_{\xi} (f),\end{aligned}\]</span>
+因此最后我们得到了<span class="math inline">\(f\)</span>沿着<span
+class="math inline">\(\xi(T)\)</span>方向的李导数。</p>
+<p>给定流形上任意一点<span class="math inline">\(p\)</span>，守恒荷<span
+class="math inline">\(\mu(p,\cdot)\)</span>可以看作是从李代数<span
+class="math inline">\(\mathbf{g}\)</span>到实数的一个映射，并且由于<span
+class="math inline">\(T \rightarrow
+\xi(T)\)</span>是一个线性映射，因此<span
+class="math inline">\(\mu(p,\cdot)\)</span>同样是一个线性映射，从这种角度，我们可以认为<span
+class="math inline">\(\mu\)</span>是一个流形<span
+class="math inline">\(M\)</span>到对偶李代数<span
+class="math inline">\(\mathbf{g}^*\)</span>的一个映射： <span
+class="math display">\[\mu : M \rightarrow \mathbf{g}^*,\]</span>
+这个映射我们就称之为动量映射。由定义，它满足： <span
+class="math display">\[\langle T , \mu(p) \rangle =
+\mu(p,T).\]</span></p>
+<p>接下来考虑一个最简单的例子，来看一下动量映射是怎么对应到动量和角动量上去的。考虑<span
+class="math inline">\(n\)</span>维欧式空间<span
+class="math inline">\(\mathbb{R}^n\)</span>以及它的余切空间（余切丛）<span
+class="math inline">\(T^*
+\mathbb{R}^n\)</span>，选取一组广义坐标和广义动量<span
+class="math inline">\((\vec{q},\vec{p}) =
+(q^i,p_j)\)</span>，那么余切丛上的辛形式为： <span
+class="math display">\[\omega = \sum_i d p_i \wedge d q^i.\]</span>
+接下来我们考虑庞加莱群<span
+class="math inline">\(\mathbb{P}^n\)</span>对流形<span
+class="math inline">\(\mathbb{R}^n\)</span>的作用。首先是平移群<span
+class="math inline">\(\mathbb{R}^n\)</span>的作用，选择任意一个平移矢量<span
+class="math inline">\(\vec{a}\)</span>，我们有： <span
+class="math display">\[\vec{a}\cdot (\vec{q},\vec{p}) =
+(\vec{q}+\vec{a},\vec{p}).\]</span> 平移群的李代数仍然为<span
+class="math inline">\(\mathbb{R}^n\)</span>，选取李代数中的一个单位矢量<span
+class="math inline">\(\vec{v}\)</span>代表平移的方向，那么它生成的无穷小变换的切矢量可以写为：
+<span class="math display">\[\xi(\vec{v}) = v^i \frac{\partial}{\partial
+q^i},\]</span> 从而有： <span class="math display">\[\iota
+(\xi(\vec{v})) \omega = -v^i d p_i = d \mu(q^i,p_i;\vec{v}) ,\]</span>
+其中动量映射<span
+class="math inline">\(\mu(q^i,p_i;\vec{v})\)</span>为： <span
+class="math display">\[\mu(q^i,p_i;\vec{v}) = -v^i p_i,\]</span>
+这也正是<span class="math inline">\(\vec{v}\)</span>方向的动量。</p>
+<p>随后我们再考虑转动群，不过在那之前，我们不妨先考虑一个一般线性变换。令考虑偶数维相空间<span
+class="math inline">\(V_{2n} =
+\{(x^1,\cdots,x^{2n}\}\)</span>，李群<span
+class="math inline">\(G\)</span>作用是<span
+class="math inline">\(V_{2n}\)</span>上保持辛形式不变的一个线性对称变换，坐标按照李群<span
+class="math inline">\(G\)</span>的某种矩阵表示来进行变换。令<span
+class="math inline">\(T^A\)</span>为李代数，记<span
+class="math inline">\(\rho(T^A)^i_{\ j}\)</span>为<span
+class="math inline">\(N\times
+N\)</span>的矩阵表示，并且无穷小变换对应的切矢量场为： <span
+class="math display">\[\xi(T^A) = x^j \rho(T^A)^i_{\ j}
+\frac{\partial}{\partial x^i},\]</span> 那么接下来有： <span
+class="math display">\[\iota(\xi) \omega =  x^j \rho(T^A)^i_{\ j}
+\omega_{ik} d x^k = d \left(\frac{1}{2}x^j \rho(T^A)^i_{\ j}
+\omega_{ik}x^k \right)\]</span> 我们可以读出动量映射为: <span
+class="math display">\[\mu^A (x,T^A) = \frac{1}{2}x^j \rho(T^A)^i_{\ j}
+\omega_{ik}x^k .\]</span></p>
+<p>最后对于<span
+class="math inline">\(\mathbb{R}^n\)</span>上的转动变换。不失一般性，我们就考虑<span
+class="math inline">\(1-2\)</span>平面上的转动，也就是对于广义坐标<span
+class="math inline">\(q\)</span>我们有无穷小变换<span
+class="math inline">\(g(t)\)</span>： <span class="math display">\[q^1
+\rightarrow q^1 + t q^2,\quad q^2 \rightarrow q^2 - t q^1,\]</span>
+因为<span
+class="math inline">\(\vec{p}\)</span>是余切矢量，因此它的变换为： <span
+class="math display">\[p_1 \rightarrow p_1 - t p_2,\quad p_2 \rightarrow
+p_2 + t p_1,\]</span>
+这样辛形式在上述变换下保持不变。因此我们可以读出无穷小变换为： <span
+class="math display">\[\xi = q^2 \frac{\partial}{\partial q^1} - q^1
+\frac{\partial}{\partial q^2} - p_2 \frac{\partial}{\partial p_1}+ p_1
+\frac{\partial}{\partial p_2},\]</span> 因此由： <span
+class="math display">\[\iota(\xi) \omega = -p_2 d q^1 + p_1 dq^2 -q^2
+dp_1 + q^1 dp_2 = d (q^1p_2 - q^2 p_1),\]</span> 因此动量映射为： <span
+class="math display">\[\mu(q,p,1-2) = q^1p_2 - q^2p_1,\]</span>
+实际上就是<span class="math inline">\(1-2\)</span>平面上的角动量。</p>
+<h1 id="哈密顿约化">哈密顿约化</h1>
+<p>有些时候，我们研究的系统会存在一些约束，比如某些守恒量是一个固定值。我们已经看到系统的守恒量使用动量映射函数<span
+class="math inline">\(\mu(x,T)\)</span>来表示，因此我们需要考虑下述形式的约束条件：
+<span class="math display">\[\phi^A = \mu(T^A) - \langle T^A , \xi
+\rangle = 0,\]</span>
+我们称之为第一类约束条件。这个条件给出了相空间中的一个曲面<span
+class="math inline">\(S\)</span>： <span class="math display">\[S = \{
+p| \phi^A(p) = 0\}.\]</span> 如果我们假定 <span
+class="math display">\[\{ \mu^A , \mu^B \} = f_{^{AB}_{\quad C}}
+\mu^C,\]</span> 那么可以证明上述曲面在李群<span
+class="math inline">\(G\)</span>的作用下是保持不变的，因此我们可以考虑下述哈密顿约化：
+<span class="math display">\[M //_{\zeta} G = \mu^{-1}(\zeta) /
+G.\]</span> 哈密顿约化在系统的量子化中有重要的作用。</p>
+<p>这里我们进一步考虑一种特殊情况，即相空间是一个凯勒（K<span
+class="math inline">\(\ddot{\textrm{a}}\)</span>hler）流形。凯勒流形有一个和度规适配的复结构张量<span
+class="math inline">\(I\)</span>满足： <span
+class="math display">\[g(IX,IY) = g(X,Y),\quad X,Y \in TM,\]</span>
+并且是平移不变的：<span class="math inline">\(\nabla I =
+0\)</span>。对于凯勒流形而言，它的辛形式可以由度规定义为：<span
+class="math inline">\(\omega(X,Y) = g(X,IY)\)</span>，或者写为： <span
+class="math display">\[\omega = \frac{i}{2} g_{i \bar{j}} d z^i \wedge d
+\bar{z}^{\bar{j}},\]</span> 其中度规为<span class="math inline">\(d s^2
+= g_{i \bar{j}} d z^i d \bar{z}^{\bar{j}} + c.c\)</span>。辛形式<span
+class="math inline">\(\omega\)</span>通常也被称作为凯勒形式。</p>
+<p>如果<span
+class="math inline">\(M\)</span>是一个凯勒流形的话，有定理保证上述保持辛形式不变的作用<span
+class="math inline">\(G\)</span>实际上没有固定点，并且商空间<span
+class="math inline">\(M//G\)</span>同样为一个凯勒流形，它的凯勒结构继承自<span
+class="math inline">\(M\)</span>。</p>
+<p>一个重要的例子就是<span class="math inline">\(N\)</span>维复空间<span
+class="math inline">\(V=\mathbb{C}^N\)</span>，其上的凯勒形式可以自然地写为：
+<span class="math display">\[\omega = \frac{i}{2} \sum_{a=1}^N d z^a
+\wedge d \bar{z}_a = \sum_a d x^a \wedge d y^a,\]</span>
+其中复坐标定义为：<span class="math inline">\(z^a = x^a + i
+y^a\)</span>。显而易见，任意一个幺正变换<span
+class="math inline">\(U(N)\)</span>作用于复坐标<span
+class="math inline">\(z^a\)</span>，凯勒形式和度规都是保持不变的，因此我们可以求出上述幺正变换对应的动量映射。<span
+class="math inline">\(U(N)\)</span>对应的李代数可以写为<span
+class="math inline">\(N\times N\)</span>维的反厄米矩阵： <span
+class="math display">\[(T^a_{\ b})^* = - T^b_{\ a},\]</span>
+因此对应的无穷小变换可以写为： <span class="math display">\[\xi(T) = z^b
+T^a_{\ b} \frac{\partial}{\partial z^a} - \bar{z}_a T^b_{\ a}
+\frac{\partial}{\partial \bar{z}^a},\]</span>
+因此我们可以求得相应的动量映射为： <span class="math display">\[\mu(T) =
+i z^b T^a_{\ b} \bar{z}_a.\]</span></p>
+<p>特别地，我们我们考虑一个<span
+class="math inline">\(U(1)\)</span>转动： <span
+class="math display">\[e^{i\theta} : z^a \rightarrow e^{i Q^a \theta}
+z^a, \quad a=1,\cdots,N,\]</span> 相应的动量映射为： <span
+class="math display">\[\mu = \sum Q^a |z^a|^2,\]</span> 其中<span
+class="math inline">\(Q^a\)</span>为整数。如果对超对称理论足够熟悉的话，那么上述动量映射实际上就是所谓的<span
+class="math inline">\(D\)</span>-term势能项。考虑4维<span
+class="math inline">\(\mathcal{N}=1\)</span>的一个超对称U(1)规范理论，理论中有<span
+class="math inline">\(N\)</span>组hypermultiplet，它们所携带的U(1)荷为<span
+class="math inline">\(Q^a\)</span>。那么如果我们把矢量超场中的辅助场<span
+class="math inline">\(D\)</span>积分积掉之后，那么便会给出一个势能项：
+<span class="math display">\[V = \frac{1}{2} D^2 = \frac{1}{2}\left(
+\sum_{a=1}^N Q^a |\Phi^a|^2\right)^2,\]</span> 其中<span
+class="math inline">\(\Phi^a\)</span>是hypermultiplet里面的复标量场，这个其实就是<span
+class="math inline">\(\Phi^a\)</span>所构成的理论模空间的U(1)对称性所生成的动量映射。特别地，我们还可以考虑加入所谓的Fayet--Iliopoulos
+<span class="math inline">\(D\)</span>-term： <span
+class="math display">\[S_{\textrm{FI}} = \xi \int d^4 x d^4 \theta V =
+\xi \int d^4 x D,\]</span> 其中<span
+class="math inline">\(V\)</span>是U(1)的矢量超场，D则是上述辅助场。那么这项实际上会使得势能项有一个偏移：
+<span class="math display">\[V = \frac{1}{2} D^2 =
+\frac{1}{2}\left(\sum_{a=1}^N Q^a |\Phi^a|^2 - \xi \right)^2,\]</span>
+如果我们考虑理论的真空的话，它实际上就是<span
+class="math inline">\(\Phi^a\)</span>所构成的理论模空间中的一个约化曲面。</p>
+<h1 id="相空间量子化">相空间量子化</h1>
+<p>首先我们需要说明的是，什么是相空间量子化？我们考虑一个辛流形<span
+class="math inline">\(\mathcal{P}\)</span>，其上有一个处处不为零的闭的辛形式<span
+class="math inline">\(\omega = \frac{1}{2} \omega_{ij}(x) d x^i \wedge d
+x^j\)</span>。比如在单粒子系统里，相空间就是粒子坐标空间的余切丛，我们在量子化的时候会假定动量和坐标的非对易性，也就是相空间几何的非对易性（或者说存在一个由普朗克常数刻画的最小相体积），这个非对易的程度是由普朗克常数<span
+class="math inline">\(\hbar\)</span>来决定的。对于一个一般的相空间，我们需要做的事情是一样的。</p>
+<p>考虑一组辛形式<span class="math inline">\(\omega^{(k)} = k
+\omega\)</span>，其中<span
+class="math inline">\(k\)</span>充当了普朗克常数的地位，虽然原则上我们可以令<span
+class="math inline">\(k\)</span>为任意正实数，这里为了方便讨论我们令<span
+class="math inline">\(k\)</span>是整数，而当<span
+class="math inline">\(k\rightarrow
+\infty\)</span>的时候，我们会回到经典情况。对于一个拓扑空间而言，最自然的研究对象是上面的函数<span
+class="math inline">\(\mathbb{P}\rightarrow
+\mathbb{C}\)</span>。对于合适的函数集合，以及任意的<span
+class="math inline">\(k\)</span>，我们指定相空间的一个希尔伯特空间<span
+class="math inline">\(\mathcal{H}_k\)</span>，并且将函数提升为一个算符<span
+class="math inline">\(Q^{(k)}(f)\)</span>，并且要求如下几个条件：</p>
+<ul>
+<li><p><span class="math inline">\(\lim_{k\rightarrow \infty} k ||
+Q^{(k)}(f) Q^{(k)}(g) - Q^{(k)}(fg) || &lt; \infty,\)</span></p></li>
+<li><p><span class="math inline">\([ Q^{(k)}(f) , Q^{(k)}(g) ] =
+-\frac{i}{k} Q^{(k)}(\{f,g\}) + \mathcal{O}(1/k^2),\)</span>
+其中函数的柏松括号定义为： <span class="math display">\[\{ f , g \} =
+\omega^{ij} \partial_i f \partial _j g.\]</span></p></li>
+<li><p><span class="math inline">\((Q^{(k)}(f))^{\dagger} =
+Q^{(k)}(f^*),\)</span>即实函数代表的是自伴算符。</p></li>
+</ul>
+<p>如果在经典极限<span class="math inline">\(k\rightarrow
+\infty\)</span>下上述三个关系都可以满足的话，那么希尔伯特空间希尔伯特空间<span
+class="math inline">\(\mathcal{H}_k\)</span>以及算符<span
+class="math inline">\(Q^{(k)}(f)\)</span>便构成了相空间的一个量子化。</p>
+<p>达成上述目标的途径并不唯一，实际上并没有一个通用的方式去做量子化，并且不同的途径所得到的量子化结果也无法保证是绝对相同的。通常来讲，我们有如下两种量子化的方案可选：</p>
+<ul>
+<li><p>薛定谔量子化：有的时候，我们可以将广义坐标和广义动量全局地区分开来，比如最常见的情况就是，相空间是某个流形<span
+class="math inline">\(M\)</span>的余切空间<span
+class="math inline">\(\mathcal{P}=T^*M\)</span>。单粒子的量子力学就是这种情况，此时<span
+class="math inline">\(M\)</span>就是粒子所在的空间。这样的话，波函数可以选取为<span
+class="math inline">\(M\)</span>上所有平方可积函数的集合<span
+class="math inline">\(\mathcal{H}=L^2(M)\)</span>，而动量则可以量子化为<span
+class="math inline">\(p_i = -i \hbar
+\nabla_i\)</span>。利用算符的正规排序，我们可以把任何函数写为希尔伯特空间中的算符。</p></li>
+<li><p>有的时候相空间会有一些非常好的额外结构，使得我们可以选取更加方便的量子化手段。比如当相空间<span
+class="math inline">\(\mathcal{P}\)</span>是一个凯勒（K<span
+class="math inline">\(\ddot{\textrm{a}}\)</span>hler）流形的时候，那么凯勒势便给出了流形上的一个全纯线丛<span
+class="math inline">\(L \rightarrow
+\mathcal{P}\)</span>。在此时，我们可以使用所谓的几何量子化或凯勒量子化或Berezin-Toeplitz量子化的方式。</p></li>
+</ul>
+<h1 id="凯勒量子化">凯勒量子化</h1>
+<p>我们这里不再对薛定谔量子化做过多介绍，而且简要介绍一下第二种凯勒量子化，这种量子化方式在对于相空间具有凯勒结构的时候是非常系统化也是非常方便的。</p>
+<p>首先我们现简单回顾一下凯勒几何。考虑一个辛流形以及流形上的黎曼度规：
+<span class="math display">\[d s^2 = g_{\mu \nu} dx^{\mu} dx^{\nu},\quad
+\mu,\nu = 1,\cdots,2N.\]</span>
+如果我们可以给予流形一个和度规适配的复结构<span
+class="math inline">\(J\)</span>，并且辛形式在这个复结构下是一个正定的<span
+class="math inline">\((1,1)\)</span>形式，并且满足： <span
+class="math display">\[\omega(v_1, J v_2) = g (v_1,v_2),\]</span>
+那么我们就说这个流形是一个凯勒流形。在局域坐标下，上述条件实际上意味着：
+<span class="math display">\[\omega_{\mu \lambda} J_{\nu}^{\ \lambda} =
+g_{\mu \nu},\]</span> 如果我们选取一组复坐标讲复结构<span
+class="math inline">\(J\)</span>对角化： <span class="math display">\[J
+\left(\frac{\partial}{\partial z^{i}}\right) = i
+\left(\frac{\partial}{\partial z^{i}}\right),\quad J
+\left(\frac{\partial}{\partial \bar{z}^{i}}\right) = -i
+\left(\frac{\partial}{\partial \bar{z}^{i}}\right),\]</span>
+那么上述条件实际上暗示度规只有全纯-反全纯分量，并且和辛形式的关系为：
+<span class="math display">\[\omega = \frac{i}{2} g_{i \bar{j}} d z^i
+\wedge d \bar{z}^{\bar{j}}.\]</span>
+这个辛形式我们也经常叫做凯勒形式，并且我们可以局域地定一个一个所谓的（实的）凯勒势<span
+class="math inline">\(K\)</span>满足： <span
+class="math display">\[\omega = i \partial \bar{\partial}
+K.\]</span></p>
+<p>相比复几何而言，凯勒几何可以附加一个额外的结构。注意到上述凯勒势<span
+class="math inline">\(K\)</span>有一个任意性： <span
+class="math display">\[K \sim K + f(z) + \bar{f}(\bar{z})，\]</span>
+也就是两个相差任何一个全纯函数的凯勒势是等价的，它们会给出同样的凯勒形式。因此我们可以用一个全纯线丛来刻画凯勒结构：
+<span class="math display">\[L \rightarrow \mathcal{P},\]</span>
+在这个线丛上我们可以赋予纤维上的一个协变导数<span
+class="math inline">\(\nabla\)</span>（或者联络），使得线丛的曲率为凯勒形式：
+<span class="math display">\[F(\nabla) = \omega,\]</span>
+那么上述的全纯变换即对应在线丛上选择不同的截面，在不同截面下的联络会有所不同，但是曲率则是保持不变的。上述凯勒势同样有一个几何意义，我们可以赋予纤维上的一个厄米度规<span
+class="math inline">\(h\)</span>，并且要求纤维丛的整体度规和协变导数相适配，这意味着如果我们选取纤维上的复坐标<span
+class="math inline">\((\phi,\bar{\phi})\)</span>的话，那么纤维上的联络可以写为（这里我不是很确定）：
+<span class="math display">\[\Gamma^{\phi}_{i \phi} = \frac{1}{2} h^{-1}
+\partial_{i} h = \frac{1}{2}\partial_{i} \log h ,\]</span> 黎曼曲率为：
+<span class="math display">\[R^{\phi}_{\ \phi i \bar{j}} = -
+\partial_{\bar{j}} \Gamma^{\phi}_{i \phi} = -\frac{1}{2} \partial_i
+\partial_{\bar{j}} \log h,\]</span> 因此我们可以自然地选取厄米度规为
+<span class="math display">\[h = e^{-K},\]</span>
+使得上述黎曼曲率给出的是凯勒形式。</p>
+<p>接下来我们直接给出凯勒量子化的过程。首先我们定义希尔伯特空间<span
+class="math inline">\(\mathcal{H}_k\)</span>： <span
+class="math display">\[\mathcal{H}_k:= \textrm{Ker} \left[\bar{\partial}
+: \Omega^{0,0} \left(L^{\otimes k} \right) \rightarrow \Omega^{0,1}
+\left(L^{\otimes k} \right) \right],\]</span> 换言之就是<span
+class="math inline">\(L^{\otimes k}\)</span>取值的全纯函数，其中<span
+class="math inline">\(L^{\otimes k}\)</span>代表<span
+class="math inline">\(k\)</span>个<span
+class="math inline">\(L\)</span>的张量积。利用纤维上的度规我们可以定义希尔伯特空间<span
+class="math inline">\(\mathcal{H}_k\)</span>上的内积，即对任意两个矢量<span
+class="math inline">\(\psi_1,\psi_2 \in
+\mathcal{H}_k\)</span>，我们定义： <span class="math display">\[\langle
+\psi_1,\psi_2 \rangle_{\mathcal{H}_k} = \int_{\mathcal{P}}
+\frac{(\omega_2)^n}{n!} e^{-k K} \bar{\psi}_1 (\bar{z})
+\psi_2(z),\]</span> 其中<span
+class="math inline">\((\omega_2)^n/n!\)</span>是相空间<span
+class="math inline">\(\mathcal{P}\)</span>的体积元，<span
+class="math inline">\(e^{-kK}\)</span>是纤维<span
+class="math inline">\(L^{\otimes
+k}\)</span>上的度规。我们可以很容易看出，上述内积在以下变换下保持不变：
+<span class="math display">\[\left\{ \begin{array}{l}
+\psi(z) \rightarrow e^{k f(z)} \psi(z)\\
+\bar{\psi}(\bar{z}) \rightarrow e^{k \bar{f}(\bar{z})}
+\bar{\psi}(\bar{z})\\
+K \rightarrow K + f(z) + \bar{f}(\bar{z})
+\end{array}\right.\]</span>
+因此是一个良好定义的内积。最后给定相空间上任意一个函数<span
+class="math inline">\(g(z,\bar{z})\)</span>，我们可以利用内积定义其对应的算符<span
+class="math inline">\(Q^{(k)}(g)\)</span>为： <span
+class="math display">\[\langle \psi_1,Q^{(k)}(g) \psi_2
+\rangle_{\mathcal{H}_k} = \int_{\mathcal{P}} \frac{(\omega_2)^n}{n!}
+e^{-k K} \bar{\psi}_1 (\bar{z}) g(\bar{z},z) \psi_2(z).\]</span></p>
+<p>接下来我们讨论一个简单的例子，即考虑二维相空间<span
+class="math inline">\(\mathbb{C}\)</span>为一个复平面，以及上面的凯勒形式：
+<span class="math display">\[\frac{\omega}{2\pi} = \frac{d p \wedge d
+q}{2\pi \hbar} = \frac{i}{2\pi \hbar} d z \wedge d \bar{z}.\]</span>
+这实际上正式一维自由粒子的相空间，薛定谔量子化（或正则量子化）给出的则是熟知的正则对易关系：
+<span class="math display">\[\left[ \hat{p} , \hat{q} \right] = -i
+\hbar.\]</span> 利用凯勒量子化，我们首先给出凯勒势： <span
+class="math display">\[K = z \bar{z} = |z|^2,\]</span>
+对于希尔伯特空间<span
+class="math inline">\(\mathcal{H}_k\)</span>而言，两个矢量的内积为：
+<span class="math display">\[\langle \psi_1,\psi_2
+\rangle_{\mathcal{H}_k} = \int \frac{dx dy}{\pi}e^{-k|z|^2} \bar{\psi}_1
+(\bar{z}) \psi_2(z).\]</span> 复平面上的任意函数可以由<span
+class="math inline">\(z,\bar{z}\)</span>生成，特别地，如果我们考虑<span
+class="math inline">\(z\)</span>与<span
+class="math inline">\(\bar{z}\)</span>对应的算符： <span
+class="math display">\[a^{\dagger} = \sqrt{k} Q^{(k)}(z),\quad
+a=\sqrt{k} Q^{(k)}(\bar{z}),\]</span> 那么通过内积我们有： <span
+class="math display">\[\langle \psi_1,a^{\dagger} \psi_2
+\rangle_{\mathcal{H}_k} = \int \frac{dx dy}{\pi}e^{-k|z|^2}\sqrt{k}
+z  \bar{\psi}_1 (\bar{z}) \psi_2(z).\]</span> 以及 <span
+class="math display">\[\begin{aligned}
+    \langle \psi_1,a \psi_2 \rangle_{\mathcal{H}_k} &amp;= \int \frac{dx
+dy}{\pi}e^{-k|z|^2}\sqrt{k} \bar{z}  \bar{\psi}_1 (\bar{z})
+\psi_2(z)\nonumber \\
+    &amp;=\int \frac{dx dy}{\pi} \left(-\frac{1}{\sqrt{k}}\right)
+\partial_z \left( e^{-k|z|^2} \right) \bar{\psi}_1 (\bar{z})
+\psi_2(z)\nonumber \\
+    &amp;=\int \frac{dx dy}{\pi}  e^{-k|z|^2}  \bar{\psi}_1 (\bar{z})
+\left(\frac{1}{\sqrt{k}}\right)  \partial_z  \psi_2(z),\end{aligned}\]</span>
+因此不难看出二者满足对易关系： <span class="math display">\[[a ,
+a^{\dagger}]= 1,\]</span>
+它们生成的本征态即为相干态，与我们熟知的量子力学是一致的。</p>
+<h1 id="特殊几何">特殊几何</h1>
+<p>最后我们来讨论一种特殊的辛流形，它们可以被赋予一组投影（projective）的复坐标<span
+class="math inline">\(X^0,\cdots,X^N\)</span>，并且每个复坐标可以写为某种积分形式：
+<span class="math display">\[X^I = \int_{A^I} \Omega,\quad
+(I=0,\cdots,N)\]</span> 这种几何被称为特殊几何（Special
+geometry），并且常见于弦论中和超对称场论中的几何的形变模空间。接下来我们以Calabi-Yau
+3-fold的复结构模空间为例，讨论特殊几何的性质。对于一个Calabi-Yau 3-fold
+<span class="math inline">\(M\)</span>，它的复结构可以由流形上的<span
+class="math inline">\((3,0)\)</span>形式场<span
+class="math inline">\(\Omega\)</span>来刻画。我们选取一组（实的）3-cycle基底<span
+class="math inline">\(A^I,B_J (I,J =
+0,\cdots,h^{2,1})\)</span>，使得它们之间的相交数满足如下正则关系： <span
+class="math display">\[A^I \cap B_J = - B_J \cap A^I  = \deg^I_J,\quad
+A^I \cap A^J  = B_I \cap B_J = 0,\]</span>
+利用庞加莱对偶，相应的上同调基底记做<span
+class="math inline">\((\alpha_I,\beta^I)\)</span>，它们满足： <span
+class="math display">\[\int_{A^J}\alpha_I = \int \alpha_I \wedge \beta^J
+= \delta^J_I ,\quad \int_{B_J} \beta^I = \int \beta^I \wedge \alpha_J =
+- \delta^I_J.\]</span> 我们可以利用<span
+class="math inline">\((3,0)\)</span>形式场<span
+class="math inline">\(\Omega\)</span>在<span
+class="math inline">\(\alpha_I\)</span>上做投影得到坐标： <span
+class="math display">\[X^I = \int_{A^I} \Omega,\quad
+(I=0,\cdots,N).\]</span> 实际上上述<span
+class="math inline">\(h^{2,1}+1\)</span>个复坐标有一个冗余性，因为<span
+class="math inline">\((3,0)\)</span>形式场<span
+class="math inline">\(\Omega\)</span>如果放缩一个常数<span
+class="math inline">\(\Omega \rightarrow \lambda
+\Omega\)</span>，仍然会给出相同的复结构，因此上述坐标实际上是一组投影坐标：
+<span class="math display">\[(X^0,\cdots,X^{h^{2,1}}) \sim (\lambda
+X^0,\cdots, \lambda X^{h^{2,1}}),\]</span> 局域来讲，我们可以选取坐标：
+<span class="math display">\[t^{\alpha} = \frac{X^{\alpha}}{X^0},\quad
+\alpha=1,\cdots,h^{2,1}.\]</span> 实际上我们知道，Calabi-Yau
+3-fold的复结构模空间正式<span
+class="math inline">\(h^{2,1}\)</span>维的，因此上述投影坐标<span
+class="math inline">\(\{X^I\}\)</span>（或者局域坐标<span
+class="math inline">\(\{t^{\alpha}\}\)</span>）已经是模空间的一组完备坐标了。因此如果我们考虑<span
+class="math inline">\((3,0)\)</span>形式场<span
+class="math inline">\(\Omega\)</span>在<span
+class="math inline">\(\beta^I\)</span>上的投影： <span
+class="math display">\[F_I = \int_{B^I} \Omega,\quad
+(I=0,\cdots,N).\]</span> 它们必然是依赖于投影坐标<span
+class="math inline">\(\{X^I\}\)</span>的函数，我们记做<span
+class="math inline">\(F_I(X)\)</span>。利用上述分解我们可以将<span
+class="math inline">\((3,0)\)</span>形式场<span
+class="math inline">\(\Omega\)</span>写为： <span
+class="math display">\[\Omega = X^I \alpha_I - F_I(X)
+\beta^I.\]</span></p>
+<p>如果我们考虑Calabi-Yau 3-fold的复结构的一个微小形变，即考虑<span
+class="math inline">\(\partial_I \Omega\)</span>。对于一个<span
+class="math inline">\((3,0)\)</span>形式场，如果要求它在新的复结构下仍然为<span
+class="math inline">\((3,0)\)</span>形式场，那么相对于原来的复坐标，它会有一个由<span
+class="math inline">\((2,1)\)</span>形式刻画的微小形变（这也正是为何<span
+class="math inline">\(h^{2,1}\)</span>对应的是复结构模空间的维度），因此我们自然有：
+<span class="math display">\[\int \Omega \wedge \partial_I \Omega =
+0,\]</span> 将展开式带入我们有： <span class="math display">\[F_I = X^J
+\frac{\partial F_J}{X^I} = \frac{1}{2} \frac{\partial}{\partial X^I}
+\left( X^J F_J(X) \right),\]</span>
+换句话说，我们可以定义一个所谓的prepotential <span
+class="math inline">\(\mathcal{F}(X)\)</span>，满足： <span
+class="math display">\[\mathcal{F} = \frac{1}{2} X^J F_J(X),\quad  F_I =
+\frac{\partial \mathcal{F}}{\partial X^I}.\]</span> 另一方面，由于 <span
+class="math display">\[2\mathcal{F} = X^I \frac{\partial
+\mathcal{F}}{\partial X^I},\]</span> 因此prepotential <span
+class="math inline">\(\mathcal{F}\)</span>是关于投影坐标<span
+class="math inline">\(\{X^I\}\)</span>的二次同质（homogeneous）函数：
+<span class="math display">\[\mathcal{F}(\lambda X) = \lambda^2
+\mathcal{F}(X).\]</span> 最后，模空间上的凯勒形式通常写为： <span
+class="math display">\[K^{2,1} = - \log \left( i \int \Omega \wedge
+\bar{\Omega}\right),\]</span> 将<span
+class="math inline">\(\Omega\)</span>的展开式带入之后，模空间上全纯线丛的度规可以写为：
+<span class="math display">\[e^{-K^{2,1}} = -i \sum_{I=0}^{h^{2,1}}
+\left( X^I \bar{F}_I - \bar{X}^I F_I \right),\]</span>
+因此对于此类的几何，关键在于去寻找或构造prepotential <span
+class="math inline">\(\mathcal{F}\)</span>，我们称之为特殊几何。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Geometry/">#Geometry</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>辛几何随笔</div>
+      <div>https://quantum-cyborg.github.io/2022/02/09/Math/Symplectic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mario</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/11/Physics/Stabilizer-codes/" title="Stabilizer Codes (I)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Stabilizer Codes (I)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/08/Physics/MPO/" title="DMRG附录：用“自动机”来计算MPO">
+                        <span class="hidden-mobile">DMRG附录：用“自动机”来计算MPO</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

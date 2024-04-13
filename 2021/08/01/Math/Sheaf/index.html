@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mario">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="层（Sheaf）是一个很有趣的数学概念。给定一个拓扑空间\(X\)，我们可以考虑给这个拓扑空间附加一些额外的信息。比如，我们可以考虑\(X\)上的任何光滑函数，可以是定义在整个\(X\)上的，也可以是定义在\(X\)的某一个开集上的，我们可以把这些定义在开集上的光滑函数称为一个层\(\mathscr{F}\)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sheaf">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2021/08/01/Math/Sheaf/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="层（Sheaf）是一个很有趣的数学概念。给定一个拓扑空间\(X\)，我们可以考虑给这个拓扑空间附加一些额外的信息。比如，我们可以考虑\(X\)上的任何光滑函数，可以是定义在整个\(X\)上的，也可以是定义在\(X\)的某一个开集上的，我们可以把这些定义在开集上的光滑函数称为一个层\(\mathscr{F}\)。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-01T12:00:53.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:21:20.491Z">
+<meta property="article:tag" content="Differential Geometry">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Sheaf - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Sheaf"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mario
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-01 20:00" pubdate>
+          2021年8月1日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Sheaf</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>层（Sheaf）是一个很有趣的数学概念。给定一个拓扑空间<span
+class="math inline">\(X\)</span>，我们可以考虑给这个拓扑空间附加一些额外的信息。比如，我们可以考虑<span
+class="math inline">\(X\)</span>上的任何光滑函数，可以是定义在整个<span
+class="math inline">\(X\)</span>上的，也可以是定义在<span
+class="math inline">\(X\)</span>的某一个开集上的，我们可以把这些定义在开集上的光滑函数称为一个层<span
+class="math inline">\(\mathscr{F}\)</span>。<span id="more"></span>抽象地来说，<span
+class="math inline">\(\mathscr{F}\)</span>是一个逆变的函子，它把<span
+class="math inline">\(X\)</span>上的任何的开集映射到一个阿贝尔群上（并且把开集之间的映射，映射为函数在开集上的拖回映射），这个阿贝尔群就是这个开区间上光滑函数的集合。具体来说，给定一个开集<span
+class="math inline">\(U\subset X\)</span>，那么<span
+class="math inline">\(\mathcal{F}(U)\)</span>就是定义在这个开集<span
+class="math inline">\(U\)</span>上的所有光滑函数的集合。我们知道，一个流形上的光滑函数通常满足一些额外的结构，比如两个定义在不同开集<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>上的光滑函数，如果在交集<span
+class="math inline">\(U \cap
+V\)</span>上相同的话，那么我们总可以把这个光滑函数扩展到整个并集<span
+class="math inline">\(U \cup V\)</span>上面。这是光滑函数层<span
+class="math inline">\(\mathscr{F}\)</span>的一个局域性质，而层实际上也正是被这种局域性质所刻画的，在下面的讨论中我们将首先引入预层（Presheaf），然后给它附加一些额外的局域结构或者信息，从而得到层。</p>
+<h1 id="预层presheaf">预层（Presheaf）</h1>
+<p>给定一个拓扑空间<span class="math inline">\(X\)</span>，那么<span
+class="math inline">\(X\)</span>上的一个预层<span
+class="math inline">\(\mathscr{F}\)</span>包含如下的信息：</p>
+<ul>
+<li><p>对于<span class="math inline">\(X\)</span>的任何一个开集<span
+class="math inline">\(U\subset X\)</span>，<span
+class="math inline">\(\mathscr{F}\)</span>会把它映射为一个阿贝尔群<span
+class="math inline">\(\mathscr{F}(U)\)</span><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="实际上不需要是阿贝尔群，只不过我们这里只讨论阿贝尔的情况。">[1]</span></a></sup>。</p></li>
+<li><p>如果<span class="math inline">\(V\subset U\)</span>是<span
+class="math inline">\(U\)</span>的一个开子集，那么存在一个"限制同态"：<span
+class="math inline">\(\rho_{UV} : \mathscr{F}(U) \rightarrow
+\mathscr{F}(V)\)</span>，它会把<span
+class="math inline">\(U\)</span>上的信息限制到<span
+class="math inline">\(V\)</span>上，并且满足：</p>
+<ul>
+<li><p><span class="math inline">\(\mathscr{F} (\emptyset) =
+0\)</span>。</p></li>
+<li><p><span
+class="math inline">\(\rho_{UU}\)</span>是恒等映射。</p></li>
+<li><p>如果<span class="math inline">\(W \subset V \subset
+U\)</span>的话，那么限制同态满足<span class="math inline">\(\rho_{UW} =
+\rho_{UV} \rho_{VW}\)</span>。</p></li>
+</ul></li>
+</ul>
+<p>满足上述所描述的条件，我们就可以把<span
+class="math inline">\(\mathscr{F}\)</span>称为<span
+class="math inline">\(X\)</span>上的一个预层。给定一个开集<span
+class="math inline">\(U\)</span>，我们可以谈论预层<span
+class="math inline">\(\mathscr{F}\)</span>在上面的"取值"<span
+class="math inline">\(\mathscr{F}(U)\)</span>，这实际上也是一个集合，并且这个集合<span
+class="math inline">\(\mathscr{F}(U)\)</span>里的任何一个元素<span
+class="math inline">\(\sigma\)</span>我们称之为一个截面（Section）。如果<span
+class="math inline">\(V \subset U\)</span>是一个开子集，那么<span
+class="math inline">\(\sigma\)</span>可以利用限制同态<span
+class="math inline">\(\rho_{UV}\)</span>限制在<span
+class="math inline">\(V\)</span>上，我们记为<span
+class="math inline">\(\sigma_{V} \in
+\mathscr{F}(V)\)</span>，也可以说<span
+class="math inline">\(\sigma_{V}\)</span>是截面<span
+class="math inline">\(\sigma\)</span>在<span
+class="math inline">\(V\)</span>上的取值。最后，如果将<span
+class="math inline">\(X\)</span>本身作为一个开集，那么<span
+class="math inline">\(\mathscr{F}(X)\)</span>中的一个元素我们称之为一个整体截面（global
+section）。</p>
+<p>这里谈到的的截面实际上和纤维丛中的截面是同样的东西。给定一个纤维丛<span
+class="math inline">\(FX\)</span>，其中<span
+class="math inline">\(X\)</span>是基底，<span
+class="math inline">\(F\)</span>是基底上的纤维，我们这里假定<span
+class="math inline">\(F\)</span>本身也是一个阿贝尔群（比如矢量丛）。那么我们可以谈论纤维丛<span
+class="math inline">\(FX\)</span>的截面，并且对于所有开区间的截面的集合实际上就构成了一个层。纤维丛和层是初学者容易混淆的两个概念，需要注意一下，两者虽然有联系，但是并不相同。</p>
+<h1 id="层sheaf">层（Sheaf）</h1>
+<p>给定了拓扑空间<span class="math inline">\(X\)</span>上的一个预层<span
+class="math inline">\(\mathscr{F}\)</span>，如果它满足如下的额外条件，我们将称之为层：</p>
+<ul>
+<li><p>（A）如果<span class="math inline">\(U,V \subset
+X\)</span>是<span class="math inline">\(X\)</span>的两个开子集，<span
+class="math inline">\(\sigma \in \mathscr{F}(U)\)</span>与<span
+class="math inline">\(\tau \in \mathscr{F}(V)\)</span>则是<span
+class="math inline">\(U,V\)</span>上的两个截面。如果<span
+class="math inline">\(\sigma_{U \cap V} = \tau_{U \cap
+V}\)</span>的话，那么一定存在<span class="math inline">\(\nu \in
+\mathscr{F}(U \cup V)\)</span>使得<span class="math inline">\(\nu_U =
+\sigma\)</span>以及<span class="math inline">\(\nu_V =
+\tau\)</span>。</p></li>
+<li><p>（B）如果<span class="math inline">\(U,V \subset
+X\)</span>是<span class="math inline">\(X\)</span>的两个开子集，<span
+class="math inline">\(\sigma \in \mathscr{F}(U \cup V)\)</span>是<span
+class="math inline">\(U\cup V\)</span>上的一个截面并且满足<span
+class="math inline">\(\sigma_U = \sigma_V = 0\)</span>，那么一定有<span
+class="math inline">\(\sigma=0\)</span>。</p></li>
+</ul>
+<p>现在我们来看一下这两个条件是什么意思。条件（A）实际上是说，两个隶属于不同开集<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>的截面，只要它们在公共开集<span
+class="math inline">\(U \cap
+V\)</span>中是相等的，那么我们总可以把这两个截面粘在一起变成在<span
+class="math inline">\(U\cup
+V\)</span>中的一个截面，就像之前的光滑函数一样。条件（B）的意思是，比如我找到了某个开集<span
+class="math inline">\(U\)</span>的一个开覆盖<span
+class="math inline">\(\{ U_i \}\)</span>，如果有一个<span
+class="math inline">\(U\)</span>上的截面<span
+class="math inline">\(\sigma \in
+\mathscr{F}(U)\)</span>，并且它在任何一个开子集<span
+class="math inline">\(U_i\)</span>上的取值都是零，那么只有一种可能性，那就是<span
+class="math inline">\(\sigma\)</span>本身就是零。这个条件实际上也可以引申为，如果<span
+class="math inline">\(U\)</span>上的两个截面<span
+class="math inline">\(\sigma,\tau\)</span>在任何一个开子集<span
+class="math inline">\(U_i\)</span>上的取值都相等，那么必然有<span
+class="math inline">\(\sigma = \tau\)</span>。</p>
+<p>上述这两个条件是反映的是层的局域性质：（A）使得我们可以利用小开集中的信息去粘贴出大开集的信息，也就是从小到大，（B）则使得我们可以把大开集中的信息分解到小开集之中，也就是从大到小。这使得我们可以将拓扑空间<span
+class="math inline">\(X\)</span>不断地细化，去分析每个点附近的局域信息，而这些所有的局域信息加在一起则构成了完整的层，或者完整的信息。因此我们说，<strong>层是被局域信息所定义的</strong>。</p>
+<h1 id="两个反例">两个反例</h1>
+<p>最后我们来看两个不满足上述条件（A）或（B）的预层的例子，来体会一下层与预层的区别，以及为什么说层是被局域信息所定义的。</p>
+<p>第一个例子是所谓的常数预层（Constant
+Presheaf），也就是对于任何一个开集，它的截面是一个常数，这个层不满足条件（A）。比如我们考虑两个不连通的开区间<span
+class="math inline">\(U,V \in X\)</span>满足<span
+class="math inline">\(U \cap V = \emptyset\)</span>，考虑<span
+class="math inline">\(U\)</span>上的截面<span
+class="math inline">\(\sigma\)</span>和<span
+class="math inline">\(V\)</span>上的截面<span
+class="math inline">\(\tau\)</span>。因为<span class="math inline">\(U
+\cap V = \emptyset\)</span>，所以说我们自然有<span
+class="math inline">\(\sigma_{U \cap V} = \tau_{U \cap
+V}\)</span>，但是只有当<span
+class="math inline">\(\sigma\)</span>和<span
+class="math inline">\(\tau\)</span>是同一个常数的时候，我们才能够将两者粘在一起，否则粘出来的截面在<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>上会有不同的取值，因此就是不是<span
+class="math inline">\(U\cup
+V\)</span>上的一个截面了。因此对于这个例子，如果只知道<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>中的信息，我们实际上对整体的把握仍然不够。</p>
+<p>第二个例子要复杂一些，它不满足第二个看起来最自然不过的条件（B）。我们考虑在一个复流形<span
+class="math inline">\(X\)</span>上的所有全纯函数构成的层<span
+class="math inline">\(\mathscr{O}\)</span>，以及另外一个由所有<strong>处处不为零</strong>的全纯函数构成的层<span
+class="math inline">\(\mathscr{O}^*\)</span><sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="对于任何开区间$U$，$\mathscr{O}(U)$是一个加法意义下构成的阿贝尔群，而$\mathscr{O}^*$则是在一个乘法意义下构成的阿贝尔群，这个区别要注意一下。">[2]</span></a></sup>。接下来我们考虑指数映射<span
+class="math inline">\(\exp\)</span>，很明显对于任何一个全纯函数<span
+class="math inline">\(f\)</span>，<span class="math inline">\(\exp
+f\)</span>仍然是全纯函数，并且处处不为零，因此我们有映射： <span
+class="math display">\[\exp: \mathscr{O} \rightarrow
+\mathscr{O}^*.\]</span>
+接下来我们可以考虑上述映射的余核（Cokernel）coker(<span
+class="math inline">\(\exp\)</span>)，也就是所有不能够写成一个全纯函数的指数的，处处非零的全纯函数。实际上容易发现，coker(<span
+class="math inline">\(\exp\)</span>)恰恰就是一个不满足条件（B）的预层。比如说，我们考虑<span
+class="math inline">\(X=\mathbf{C}^{*}\)</span>是去掉了原点的整个复平面，其复坐标是<span
+class="math inline">\(z\)</span>。那么<span
+class="math inline">\(z\)</span>本身就是一个处处不为零的全纯函数，因此<span
+class="math inline">\(z \in
+\mathscr{O}^{*}(\mathbf{C}^{*})\)</span>是层<span
+class="math inline">\(\mathscr{O}^*\)</span>的一个截面，并且<span
+class="math inline">\(\log z\)</span>则并不是在<span
+class="math inline">\(\mathbf{C}^*\)</span>上整体定义的全纯函数，因为<span
+class="math inline">\(z\)</span>绕原点转一圈会出来一个额外的<span
+class="math inline">\(2\pi i\)</span>的相位。因此我们有<span
+class="math inline">\(z \in
+\textrm{Ker}(\exp)(\mathbf{C}^*)\)</span>，也就是预层<span
+class="math inline">\(\textrm{Ker}(\exp)(\mathbf{C}^*)\)</span>的一个（不为零）截面。然后我们可以考虑两个开集<span
+class="math inline">\(U,V\)</span>，比如让<span
+class="math inline">\(U\)</span>包含<span
+class="math inline">\(\mathbf{C}^*\)</span>中所有相位<span
+class="math inline">\(\textrm{arg}(z)\)</span>在<span
+class="math inline">\((-\epsilon , 3/2 \pi)\)</span>的点，而<span
+class="math inline">\(V\)</span>包含<span
+class="math inline">\(\mathbf{C}^*\)</span>中所有相位<span
+class="math inline">\(\textrm{arg}(z)\)</span>在<span
+class="math inline">\((+\epsilon ,- 3/2 \pi)\)</span>的点，其中<span
+class="math inline">\(\epsilon\)</span>是一个小量，那么显然<span
+class="math inline">\(\mathbf{C}^* = U \cup
+V\)</span>。但是当我们尝试把<span class="math inline">\(z \in
+\textrm{Ker}(\exp)(\mathbf{C}^*)\)</span>分解到两个开集<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>上的时候，我们会发现在<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>上<span class="math inline">\(\log
+z\)</span>都是可以整体定义的，因为<span
+class="math inline">\(U,V\)</span>中都不包含任何一个绕原点的回路，因此不会出现相位无法确定的问题，这也就意味着<span
+class="math inline">\(z_U = z_V = 0\)</span>但是<span
+class="math inline">\(z\)</span>本身不为零，也就违反了条件（B）。因此对于这个例子，如果只知道<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(V\)</span>中的信息，我们同样对整体的把握仍然不够。</p>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1"
+class="footnote-text"><span>实际上不需要是阿贝尔群，只不过我们这里只讨论阿贝尔的情况。
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2" class="footnote-text"><span>对于任何开区间<span
+class="math inline">(U)</span>，<span
+class="math inline">((U))</span>是一个加法意义下构成的阿贝尔群，而<span
+class="math inline">(^*)</span>则是在一个乘法意义下构成的阿贝尔群，这个区别要注意一下。
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Differential-Geometry/">#Differential Geometry</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Sheaf</div>
+      <div>https://quantum-cyborg.github.io/2021/08/01/Math/Sheaf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mario</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/03/CS/Blog/Hexo%20Problems/" title="Hexo 踩坑记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo 踩坑记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/18/Math/Spin%20Structure/" title="Spin Structure">
+                        <span class="hidden-mobile">Spin Structure</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

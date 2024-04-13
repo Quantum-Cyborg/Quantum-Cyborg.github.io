@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="碳基机器">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="PDF Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非常简略的笔记：Chern-Simons Field Theory for IQHE">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2022/11/08/Physics/CS_fileld_theory_IQHE/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="PDF Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T11:18:00.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:18:04.281Z">
+<meta property="article:tag" content="Chern-Simons">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>非常简略的笔记：Chern-Simons Field Theory for IQHE - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="非常简略的笔记：Chern-Simons Field Theory for IQHE"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        碳基机器
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-08 19:18" pubdate>
+          2022年11月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">非常简略的笔记：Chern-Simons Field Theory for IQHE</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="pdf-notes">PDF Notes</h2>
+<span id="more"></span>
+<p>
+
+	<div class="row">
+    <embed src="CS_fileld_theory_IQHE.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+</p>
+<hr />
+<h2 id="quantization-of-the-chern-simons-level">Quantization of the
+Chern-Simons level</h2>
+<hr />
+<p><strong>Large Gauge Transformation.</strong> With gauge
+transformation: <span class="math inline">\(A_\mu \to A_\mu +
+\partial_\mu \omega\)</span>. The electron wave function or field
+transforms as <span
+class="math inline">\(e^{ie\omega/\hbar}\)</span>.</p>
+<ul>
+<li>Wick rotation: <span class="math inline">\(\tau\)</span> periodic in
+<span class="math inline">\(\mathbf{S}^1\)</span></li>
+<li>Only physical fields are single valued, <span
+class="math inline">\(\omega(t,x)\)</span> is not need to be single
+valued. Hence, the real requirement is that <span
+class="math inline">\(e^{ie\omega/\hbar}\)</span> is single valued, not
+<span class="math inline">\(\omega\)</span>.</li>
+</ul>
+<p>Around the circle, setting <span class="math inline">\(\omega =
+\frac{2\pi\tau}{\beta} \frac{\hbar}{e}\)</span>, leaves the exponential
+<span class="math inline">\(e^{ie\omega/\hbar}\)</span> single
+valued.</p>
+<ul>
+<li>Large gauge transformation, the name signify that they cannot be
+continuously connected to the identity.</li>
+</ul>
+<p>Then the gauge transformation becomes <span class="math display">\[
+A_0 \to A_0 + \frac{2\pi}{\beta} \frac{\hbar}{e} \]</span> Gauge
+tranformation does not change the physics, we can think of <span
+class="math inline">\(A_0\)</span> as being a periodic variable, with
+periodicity <span class="math inline">\(2\pi\hbar/e\beta\)</span>.</p>
+<hr />
+<p><strong>Dirac quantization condition | Monopole <span
+class="math inline">\(\mathbf{R}^2 \to
+\mathbf{S}^2\)</span>.</strong></p>
+<p>We think about the spatial directions as forming a sphere <span
+class="math inline">\(\mathbf{S}^2\)</span>, rather than a plane <span
+class="math inline">\(\mathbf{R}^2\)</span>. By threading a background
+magnetic flux through the spatial <span
+class="math inline">\(\mathbf{S}^2\)</span>: <span
+class="math display">\[\frac{1}{2 \pi} \int_{\mathbf{S}^{2}}
+F_{12}=\frac{\hbar}{e}\]</span> where <span
+class="math inline">\(F_{12}=B_z\)</span>. This is tantamount to placing
+a Dirac magnetic monopole inside the <span
+class="math inline">\(\mathbf{S}^2\)</span>.</p>
+<ul>
+<li>It's hard to experiment by building a quantum Hall state on a
+sphere.</li>
+</ul>
+<hr />
+<p><strong>Chern-Simons Term.</strong></p>
+<p><span class="math display">\[S_{C S}=\frac{k}{4 \pi} \int d^{3} x
+A_{0} F_{12}+A_{1} F_{20}+A_{2} F_{01}\]</span> We can safely set all
+terms with <span class="math inline">\(\partial_0\)</span> to zero, but
+integrating by parts on the spatial derivatives we get an extra factor
+of 2, <span class="math display">\[S_{C S}=\frac{k}{2 \pi} \int d^{3} x
+A_{0} F_{12}\]</span> With the gauge potential <span
+class="math inline">\(A_0=a\)</span> and Dirac magnetic monopole, we
+have <span class="math display">\[S_{CS}=\beta a \frac{\hbar
+k}{e}\]</span></p>
+<ul>
+<li>Why integrate by parts before evaluating?</li>
+<li>think about the gauge field as being defined locally on different
+patches and glued together</li>
+</ul>
+<hr />
+<p><strong>Integral Hall Conductivity.</strong> Considering the periodic
+gauge transformation of <span class="math inline">\(A_0\)</span>, we
+have <span class="math display">\[
+\begin{aligned}
+S_{c s} &amp;{}\to S_{c s} + \frac{k}{4\pi} \int d^{3} x \cdot
+\partial_{\mu}\left(\omega \varepsilon^{\mu \nu \rho} \partial_{\nu}
+A_{\rho}\right) \\
+&amp;= S_{c s} + \frac{k}{4\pi} \int d\tau d^{3} x \ \nabla\omega \cdot
+(\nabla \times A)   \\
+&amp;= S_{c s} + \frac{2\pi k \hbar}{e} \cdot \frac{1}{2\pi}
+\int_{\mathbf{S}^2} F_{12}  \\
+&amp;= S_{c s} + \frac{2\pi k \hbar^2}{e^2}
+\end{aligned}
+\]</span> It’s ok if the Chern-Simons term itself is not gauge
+invariant, as long as the partition function <span
+class="math inline">\(Z=e^{iS_{CS}/\hbar}\)</span> is, then we should
+have <span class="math display">\[
+\frac{k \hbar^2}{e^2} \in \mathbb{Z}
+\]</span> By writting <span class="math inline">\(k=e^2v/\hbar\)</span>
+with <span class="math inline">\(v \in \mathbb{Z}\)</span>, the Hall
+conductivity becomes <span class="math display">\[\sigma_{xy} =
+\frac{k}{2\pi} = \frac{e^2}{2\pi\hbar}v\]</span> There was no mention of
+Landau levels, no mention of whether the charge carriers were fermions
+or bosons, or whether they were free or strongly interacting.</p>
+<hr />
+<p><strong>Remarks.</strong></p>
+<hr />
+<h2 id="appendix-dirac-quantization-condition">APPENDIX: Dirac
+quantization condition</h2>
+<p>Without magnetic monopoles, <span
+class="math inline">\(q_{m}=0,\)</span>, <span
+class="math inline">\(\nabla \cdot \mathrm{B}=0\)</span>.</p>
+<p>Assume that there is a magnetic monopole with charge <span
+class="math inline">\(q_{m},\)</span> what will happen? The <span
+class="math inline">\(B\)</span> fields is: <span
+class="math display">\[
+\vec{B}=q_{m} \frac{\vec{e}_{r}}{r^{2}}=q_{m}
+\frac{\vec{r}}{r^{3}}=q_{m} \frac{(x, y,
+z)}{\left(x^{2}+y^{2}+z^{2}\right)^{3 / 2}}
+\]</span> Chosen a vector potential <span class="math display">\[
+\vec{A}=q_{m} \frac{(y,-x, 0)}{r(r-z)}
+\]</span> The magnetic field <span class="math display">\[
+\begin{aligned}
+\nabla \times \vec{A} &amp;=q_{m} \nabla \times \frac{(y,-x, 0)}{r(r-z)}
+= q_{m}\left(\partial_{x}, \partial_{y}, \partial_{z}\right) \times
+\frac{(y,-x, 0)}{r(r-z)}  \\
+&amp;=q_{m}\left(\partial_{y} \frac{0}{r(r-z)}-\partial_{z}
+\frac{-x}{r(r-z)}, \partial_{z} \frac{y}{r(r-z)}-\partial_{x}
+\frac{0}{r(r-z)}, \partial_{x} \frac{-x}{r(r-z)}-\partial_{y}
+\frac{y}{r(r-z)}\right) \\
+&amp;=q_{m}\left(-\partial_{z} \frac{-x}{r(r-z)}, \partial_{z}
+\frac{y}{r(r-z)}, \partial_{x} \frac{-x}{r(r-z)}-\partial_{y}
+\frac{y}{r(r-z)}\right)\\
+&amp;=q_{m} \frac{(x, y, z)}{\left(x^{2}+y^{2}+z^{2}\right)^{3 / 2}}
+\end{aligned}
+\]</span> It is singular at the north pole <span
+class="math inline">\(z=r\)</span>. In fact, one can prove that no
+matter which gauge one uses, there will always be a singularity point. *
+this singularity is not a physical singularity. All physical observables
+are smooth and non-singular functions at this point. * Only A (which is
+not a measurable quantity) shows singular behavior. * In addition, the
+location of this singularity point is gauge dependent.</p>
+<hr />
+<p>So, we can use the first one to describe the south hemisphere and the
+second one to describe the north hemisp <span class="math display">\[
+\begin{aligned}
+\overrightarrow{A}_{N} &amp;= q_{m} \frac{(-y, x, 0)}{r(r+z)} \\
+\overrightarrow{A}_{S} &amp;= q_{m} \frac{(y,-x, 0)}{r(r-z)}
+\end{aligned}
+\]</span> At the equator, the vector potential is multivalued (depending
+on whether we use <span class="math inline">\(A_{N}\)</span> or <span
+class="math inline">\(A_{S}\)</span> ). The gauge transformation between
+<span class="math inline">\(A_{N}\)</span> and <span
+class="math inline">\(A_{S}\)</span> is: <span class="math display">\[
+\overrightarrow{A}_{N} = \overrightarrow{A}_{S} + 2 q_{m} \frac{(-y, x,
+0)}{(r-z)(r+z)}
+\]</span> At equator <span class="math inline">\(\mathrm{z}=0\)</span> :
+<span class="math display">\[
+\begin{aligned}
+\overrightarrow{A}_{N} &amp;=\overrightarrow{A_{S}}+2 q_{m} \frac{(-y,
+x, 0)}{r^{2}} = \overrightarrow{A}_{N}+2 q_{m} \nabla \varphi  \\
+\vec{A} &amp;{} \rightarrow \vec{A}^{\prime}=\vec{A}+\nabla \Lambda(r,
+t) \\
+\Psi(r, t) &amp;{} \rightarrow \Psi^{\prime}(r, t)=\Psi(r, t) \exp
+\left(i \frac{q_{e}}{c \hbar} \Lambda\right) \\
+\Phi &amp;{} \rightarrow \Phi^{\prime} =\Phi-\frac{\partial \Lambda(r,
+t)}{c \partial t} \\
+\end{aligned}
+\]</span> Here <span class="math display">\[
+\begin{aligned}
+\Lambda(r, t) &amp; =2 q_{m} \varphi \\
+\Psi_{N}(r, t) &amp;=\Psi_{S}(r, t) \exp \left(i \frac{q_{e}}{c \hbar}
+\Lambda\right)=\Psi_{S}(r, t) \exp \left[i \frac{2 q_{m} q_{e}}{c \hbar}
+\varphi\right]
+\end{aligned}
+\]</span> Therefore, <span class="math inline">\(2 q_{m} q_{e}/c
+\hbar\)</span> must be a integral. This tells us that the <em>magnetic
+charge</em> is quantized: <span class="math display">\[
+q_{m}=\frac{c \hbar}{2 q_{e}} n
+\]</span> This is Dirac quantization condition.</p>
+<hr />
+<ul>
+<li>For a closed surface enclosing a magnetic monopole, no matter what
+gauge one uses, the vector potential must have some singularities.</li>
+<li>If <span class="math inline">\(A\)</span> is a non-singular function
+on a closed manifold, the magnetic flux through this manifold must be
+zero.</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Physics/" class="category-chain-item">Physics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Chern-Simons/">#Chern-Simons</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>非常简略的笔记：Chern-Simons Field Theory for IQHE</div>
+      <div>https://quantum-cyborg.github.io/2022/11/08/Physics/CS_fileld_theory_IQHE/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>碳基机器</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/12/24/Physics/Kitaev%20Honeycomb%20Model/" title="Kitaev Honeycomb Model (I)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Kitaev Honeycomb Model (I)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/20/Physics/SC%20Qubits%20-%20Basic/" title="超导量子比特：基本知识">
+                        <span class="hidden-mobile">超导量子比特：基本知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

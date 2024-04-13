@@ -1,0 +1,1133 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Mario">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Clifford代数 在讲自旋之前，我们首先需要关于Clifford代数的一些基本知识。Clifford代数的定义大致有两种，一种是比较抽象的偏数学的定义，在这里我们并不打算讨论这种抽象的定义方式。另外一种是比较具体的，或者说是比较物理的定义，最早是由狄拉克给出的并且仍然在所有量子场论的教科书中使用的定义方式，我们这里将采取这种。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spin Structure">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2021/07/18/Math/Spin%20Structure/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="Clifford代数 在讲自旋之前，我们首先需要关于Clifford代数的一些基本知识。Clifford代数的定义大致有两种，一种是比较抽象的偏数学的定义，在这里我们并不打算讨论这种抽象的定义方式。另外一种是比较具体的，或者说是比较物理的定义，最早是由狄拉克给出的并且仍然在所有量子场论的教科书中使用的定义方式，我们这里将采取这种。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-18T03:33:53.000Z">
+<meta property="article:modified_time" content="2023-12-24T16:21:25.555Z">
+<meta property="article:tag" content="Algebraic Geometry">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Spin Structure - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Spin Structure"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Mario
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-18 11:33" pubdate>
+          2021年7月18日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          13k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spin Structure</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="clifford代数">Clifford代数</h1>
+<p>在讲自旋之前，我们首先需要关于Clifford代数的一些基本知识。Clifford代数的定义大致有两种，一种是比较抽象的偏数学的定义，在这里我们并不打算讨论这种抽象的定义方式。另外一种是比较具体的，或者说是比较物理的定义，最早是由狄拉克给出的并且仍然在所有量子场论的教科书中使用的定义方式，我们这里将采取这种。
+<span id="more"></span> 考虑一个线性空间<span
+class="math inline">\(V\)</span>并选择一组基底<span
+class="math inline">\(\{e_i\}\)</span>，其中<span
+class="math inline">\(i=1,2,\cdots,n =
+\textrm{dim}(V)\)</span>，并且考虑线性空间上一个度规<span
+class="math inline">\(g(e_i,e_j) \equiv
+g_{ij}=g_{ji}\)</span>，那么对于一个在此线性空间下的Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span><sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="Clifford代数是结合代数。">[1]</span></a></sup>我们可以建立起一个线性映射<span
+class="math inline">\(f:V \rightarrow \textrm{Cl}(V,g)\)</span>使得<span
+class="math inline">\(f(e_i)\equiv
+\Gamma_i\)</span>为代数的生成元，并且满足<sup id="fnref:2" class="footnote-ref"><a href="#fn:2" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="注意这里的约定和很多理论物理书籍里的约定并不相同，双方的$\Gamma$矩阵差一个虚数$i$。">[2]</span></a></sup>：
+<span class="math display">\[\Gamma_i \Gamma_j + \Gamma_j \Gamma_i = - 2
+g_{ij} \mathbf{1},\]</span> 其中<span
+class="math inline">\(\mathbf{1}\)</span>是Clifford代数的单位元。那么Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>可以看做是由<span
+class="math inline">\(\{\Gamma_i\}\)</span>生成的满足上述关系的结合代数<sup id="fnref:3" class="footnote-ref"><a href="#fn:3" rel="footnote"><span
+class="hint--top hint--rounded"
+aria-label="这种定义方式不依赖于任何具体表示，类似于李代数中的Universal
+    enveloping algebra。">[3]</span></a></sup>： <span
+class="math display">\[\textrm{Cl}(V,g) \equiv \frac{\mathbf{1}\oplus V
+\oplus (V\otimes V) \oplus (V \otimes V \otimes V) +
+\cdots}{\sim}.\]</span> 由于上述的等价关系，Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>是有限维度的，我们可以如下完全反对称生成元：
+<span class="math display">\[\Gamma_{i_1 i_2 \cdots i_p} \equiv
+\frac{1}{p!} \sum_{\sigma \in S_p} (-1)^{\sigma} \Gamma_{i_\sigma(1)}
+\Gamma_{i_\sigma(2)} \cdots \Gamma_{i_\sigma(p)},\]</span> 其中<span
+class="math inline">\(\sigma\)</span>表示任一排序并且<span
+class="math inline">\((-1)^{\sigma}\)</span>则是这个排序的符号。由此可以看出，Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>的生成元为：<span
+class="math inline">\(\mathbf{1},\Gamma_i,\Gamma_{ij},\cdots,\Gamma_{12\cdots
+n}\)</span>并且总共的个数为： <span
+class="math display">\[\left(\begin{array}{c} n\\ 0
+\end{array}\right)+\left(\begin{array}{c} n\\ 1
+\end{array}\right)+\left(\begin{array}{c} n\\ 2
+\end{array}\right)+\cdots +\left(\begin{array}{c} n\\ n
+\end{array}\right) = 2^n.\]</span> 因此Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>是维度为<span
+class="math inline">\(2^{\textrm{dim}(V)}\)</span>的一个线性空间，实际上它也正是<span
+class="math inline">\(V\)</span>的外代数<span
+class="math inline">\(\Lambda
+V\)</span>所对应的空间，而后者的生成元为：<span
+class="math inline">\(1,e_i,e_i\wedge e_j,\cdots,e_1\wedge e_2\wedge
+\cdots \wedge
+e_n\)</span>。当然，这两个代数具有不同的代数结构，从代数的角度上来讲两者并非同构。根据度规<span
+class="math inline">\(g_{ij}\)</span>的号差的不同，Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>的结构也不尽相同，以下我们只考虑度规为非退化并且号差为<span
+class="math inline">\((s,t)\)</span>（<span
+class="math inline">\(s\)</span>对应正，<span
+class="math inline">\(t\)</span>对应负），其中<span
+class="math inline">\(s+t =
+n\)</span>。在不引起混淆的情况下，我们将Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>记为<span
+class="math inline">\(\textrm{Cl}(s,t)\)</span>。</p>
+<h1 id="三维转动群so3与spin3">三维转动群SO(3)与Spin(3)</h1>
+<p>我们首先来看一个例子，即三维的转动群与三维旋量。我们知道三维的转动群SO(3)可以利用四元数表示：如果记三维矢量<span
+class="math inline">\((x,y,z)\)</span>为<span class="math inline">\(x I
++ y J + z K\)</span>的话，那么我们可以考虑如下映射： <span
+class="math display">\[R_r(x,y,z) = r \cdot (x I + j J + z K) \cdot
+r^{-1},\]</span> 其中<span
+class="math inline">\(r\)</span>是一个模长为<span
+class="math inline">\(1\)</span>的四元数：<span
+class="math inline">\(|r| =
+1\)</span>。这个映射实际上是由单位四元数到三维转动群的一个同态映射：
+<span class="math display">\[R: S^3 \rightarrow \textrm{SO}(3),\]</span>
+并且满足Ker(<span class="math inline">\(R\)</span>)=<span
+class="math inline">\(\{ \pm 1 \}\)</span>以及SO(3)<span
+class="math inline">\(\cong S^3 /
+\{1,-1\}\)</span>。具体来讲，如果我们记<span class="math inline">\(r = a
++ b I + c J + d K\)</span>的话（<span class="math inline">\(a^2 + b^2 +
+c^2 + d^2 = 1\)</span>），那么转动轴与三维矢量<span
+class="math inline">\((b,c,d)\)</span>同方向，并且转动的角度为<span
+class="math inline">\(\theta = 2 \cos^{-1}(a)\)</span>，并且<span
+class="math inline">\(r\)</span>与<span
+class="math inline">\(-r\)</span>代表相同的转动。</p>
+<p>上述的四元数结构实际上与Clliford代数有一个对应的关系，不难发现如果我们利用泡利矩阵<span
+class="math inline">\(\{i \sigma^1, i \sigma^2, i
+\sigma^3\}\)</span>来代替<span
+class="math inline">\(\{I,J,K\}\)</span>的话，它们两者满足完全相同的代数结构。此时<span
+class="math inline">\(r\)</span>可以利用泡利矩阵记为： <span
+class="math display">\[r = a + i \vec{r}\cdot \vec{\sigma}\]</span>
+并且满足<span class="math inline">\(rr^{\dagger} =
+\mathbf{1}\)</span>。这个实际上正是一个最一般的SU(2)=Spin(3)矩阵，也就是说上述映射<span
+class="math inline">\(R\)</span>实际上是从SU(2)到SO(3)的一个映射： <span
+class="math display">\[R : \textrm{Spin(3)} \rightarrow
+\textrm{SO(3)}.\]</span> 利用类似的观点，我们可以系统地定义<span
+class="math inline">\(\textrm{Pin}(V)\)</span>群和<span
+class="math inline">\(\textrm{Spin}(V)\)</span>群以及它们分别与正交群<span
+class="math inline">\(\textrm{O}(V)\)</span>以及特殊正交群<span
+class="math inline">\(\textrm{SO}(V)\)</span>之间的映射。</p>
+<h1 id="正交群与pin群">正交群与Pin群</h1>
+<p>对于给定的线性空间<span
+class="math inline">\((V,g)\)</span>，我们按照如下方式定义其上的Pin群：如果我们将<span
+class="math inline">\(V\)</span>作为子空间嵌入到Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>的中（也就是说矢量的基底是<span
+class="math inline">\(\{\Gamma_i\}\)</span>），那么线性空间<span
+class="math inline">\((V,g)\)</span>所对应的Pin群Pin<span
+class="math inline">\((V)\)</span>定义为<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>的一个由所有<span
+class="math inline">\(v\equiv v^i \Gamma_i\in V \subset
+\textrm{Cl}(V,g)\)</span>并且满足<span class="math inline">\(v^2\equiv
+v^i v^j \Gamma_i \Gamma_j = - g(v,v) \mathbf{1} = \pm
+\mathbf{1}\)</span>的元素在代数乘法的意义下所生成的子群。换句话说，任何一个Pin(<span
+class="math inline">\(V\)</span>)的元素都可以写为<span
+class="math inline">\(v_1 \cdots v_r\)</span>的形式，其中<span
+class="math inline">\(u_r\in V\)</span>并且满足<span
+class="math inline">\(u_r^2 = \pm \mathbf{1}\)</span>。如果度规<span
+class="math inline">\(g\)</span>的号差为<span
+class="math inline">\((s,t)\)</span>的话，那么在不引起混淆的情况下，我们可以记对应线性空间<span
+class="math inline">\((V,g)\)</span>的Pin群为Pin<span
+class="math inline">\((s,t)\)</span>。特别地，对于欧式空间的话我们直接记Pin<span
+class="math inline">\((n,0)\)</span>为Pin<span
+class="math inline">\((n)\)</span>。</p>
+<p>对于给定的<span class="math inline">\(v \in V \subset
+\textrm{Cl}(V,g)\)</span>，我们记<span class="math inline">\(v^{-1} =
+-v^i\Gamma_i/g(v,v)\)</span>为<span
+class="math inline">\(v\)</span>的逆。那么根据上一章节的讨论，我们可以定义一个（扭曲的）伴随映射Ad<span
+class="math inline">\(_v : V \rightarrow V\)</span>为： <span
+class="math display">\[\textrm{Ad}_v (x) = -v x v^{-1} \equiv -(v^i
+\Gamma_i) (x^j \Gamma_j) \left(\left(v^{-1}\right)^k
+\Gamma_k\right),\]</span> 利用上述<span
+class="math inline">\(v^{-1}\)</span>的表达式，经过一些简单运算进一步有：
+<span class="math display">\[\textrm{Ad}_v (x) = x^i \Gamma_i - \frac{2
+g(x,v)}{g(v,v)} v^i \Gamma_i = x - \frac{2 g(x,v)}{g(v,v)} v =
+R_v(x),\]</span> 其中<span
+class="math inline">\(R_v\)</span>表示以垂直于矢量<span
+class="math inline">\(v\)</span>的超平面作为镜面的反射。之所以在上述的伴随映射里加一个负号是因为我们最后希望得到的是<span
+class="math inline">\(R_v\)</span>而不是<span
+class="math inline">\(-R_v\)</span>。注意到对于任何一个实数<span
+class="math inline">\(\lambda\)</span>而言<span
+class="math inline">\(R_v=R_{\lambda
+v}\)</span>，因此不失一般性我们可以令<span class="math inline">\(v^2 =
+\pm 1\)</span>，也就是说<span class="math inline">\(v\in
+\textrm{Pin}(V)\)</span>。那么对于Pin<span
+class="math inline">\((V)\)</span>中的任何一个元素<span
+class="math inline">\(v_1 \cdots
+v_p\)</span>我们可以将上述伴随映射Ad<span
+class="math inline">\(_v\)</span>扩展为：Ad<span
+class="math inline">\(_{v_1 \cdots v_p} = \textrm{Ad}_{v_1} \circ \cdots
+\circ \textrm{Ad}_{v_p} = R_{v_1} \circ \cdots \circ
+R_{v_p}\)</span>即一系列反射群的乘积。而反射群属于正交群O<span
+class="math inline">\((V)\)</span>，因此我们就得到了从Pin(<span
+class="math inline">\(V\)</span>)群到正交群O<span
+class="math inline">\((V)\)</span>群的一个映射：<span
+class="math inline">\(\textrm{Ad}:\textrm{Pin}(V) \rightarrow
+\textrm{O}(V)\)</span>。事实上，任何一个正交群里的元素<span
+class="math inline">\(g\in
+\textrm{O}(V)\)</span>总可以写为一系列反射元素的组合<span
+class="math inline">\(g=R_{v_1}\circ \cdots \circ
+R_{v_p}\)</span>并且<span class="math inline">\(p \leq
+\textrm{dim}(V)\)</span>（Cartan-Dieuonn<span
+class="math inline">\(\acute{\textrm{e}}\)</span>），因此上述映射是一个满射。</p>
+<p>接下来我们考虑这个伴随映射的核Ker(Ad)。如果<span
+class="math inline">\(a\in
+\textrm{Ker}(\textrm{Ad})\)</span>的话，那么根据定义我们有Ad<span
+class="math inline">\(_a(x) = x\)</span>并且对于任意的<span
+class="math inline">\(x\in
+V\)</span>成立，我们在此处直接给出结论而不加以证明，结论是：Ker(Ad)=<span
+class="math inline">\(\{\mathbf{1},-\mathbf{1}\}\)</span>。</p>
+<p>所有上述结果可以总结为如下的一个exact sequence: <span
+class="math display">\[1 \longrightarrow \{ \pm \mathbf{1} \}
+\longrightarrow \textrm{Pin}(V) \xrightarrow{\textrm{Ad}} \textrm{O}(V)
+\longrightarrow 1.\]</span></p>
+<h1 id="特殊正交群与spin群">特殊正交群与Spin群</h1>
+<p>Pin<span class="math inline">\((V)\)</span>是Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>的一个子群，我们可以进一步地细分这个群。按照<span
+class="math inline">\(\Gamma\)</span>-矩阵的个数，我们可以把Clifford代数<span
+class="math inline">\(\textrm{Cl}(V,g)\)</span>分为：<span
+class="math inline">\(\textrm{Cl}(V,g) = \textrm{Cl}_0 (V,g) \oplus
+\textrm{Cl}_1 (V,g)\)</span>，其中<span
+class="math inline">\(\textrm{Cl}_0 (V,g)\)</span>中只包含偶数个<span
+class="math inline">\(\Gamma\)</span>-矩阵（包括单位元），而<span
+class="math inline">\(\textrm{Cl}_1 (V,g)\)</span>中则只包含奇数个<span
+class="math inline">\(\Gamma\)</span>-矩阵。<span
+class="math inline">\(\textrm{Cl}_0 (V,g)\)</span>自身是<span
+class="math inline">\(\textrm{Cl}
+(V,g)\)</span>的一个封闭子代数，因此我们可以将Pin<span
+class="math inline">\((V)\)</span>群限制在<span
+class="math inline">\(\textrm{Cl}_0 (V,g)\)</span>中从而定义Spin<span
+class="math inline">\((V)\)</span>群： <span
+class="math display">\[\textrm{Spin}(V) \equiv \textrm{Pin}(V) \bigcap
+\textrm{Cl}_0 (V,g).\]</span> 由于Pin<span
+class="math inline">\((V)\)</span>中的任何一个元素<span
+class="math inline">\(v\)</span>可以写为<span
+class="math inline">\(v_1\circ \cdots \circ v_p\)</span>，其中<span
+class="math inline">\(v_p \in V\)</span>，也就是说如果<span
+class="math inline">\(v\)</span>同时属于<span
+class="math inline">\(\textrm{Spin}(V)\)</span>的话，那么<span
+class="math inline">\(p\)</span>则必须为偶数。那么对应的伴随表示下的像<span
+class="math inline">\(\textrm{Ad}_v = R_{v_1} \circ \cdots \circ
+R_{v_p}\)</span>则必须包含偶数个反射元素。由于反射作为正交矩阵的话行列式为<span
+class="math inline">\(-1\)</span>，因此我们必然有<span
+class="math inline">\(\det (\textrm{Ad}_v) = +1\)</span>，因此<span
+class="math inline">\(\textrm{Ad}_v \in
+\textrm{SO}(V)\)</span>。同样上述结果可以总结为如下的一个exact sequence:
+<span class="math display">\[1 \longrightarrow \{ \pm \mathbf{1} \}
+\longrightarrow \textrm{Spin}(V) \xrightarrow{\textrm{Ad}}
+\textrm{SO}(V) \longrightarrow 1.\]</span></p>
+<p>实际上，物理上我们知道对于Spin群的任何一个元素<span
+class="math inline">\(g\)</span>总可以写为： <span
+class="math display">\[g = \exp \left( \frac{i}{2} \omega^{\mu \nu}
+S_{\mu \nu} \right),\]</span> 其中<span class="math inline">\(S_{\mu
+\nu} = i\left[ \Gamma_i,\Gamma_j
+\right]/4\)</span>为Spin群的生成元，因此把指数展开后，我们可以看到的确只涉及偶数个<span
+class="math inline">\(\Gamma\)</span>-矩阵。而对于Pin群的话，除了上述元素外，单独的<span
+class="math inline">\(\Gamma\)</span>-矩阵也需要考虑进来，因此群的规模相比Spin群要大一些。</p>
+<h1 id="流形的定向与非定向">流形的定向与非定向</h1>
+<p>这一章我们将进入主题，讨论光滑流形上定向问题（第一类Stiefel-Whitney类）以及自旋结构（Pin或者Spin结构，根据流形是否可定向），这一章节我们首先考虑前者。首先我们考虑任一光滑的<span
+class="math inline">\(n\)</span>维流形<span
+class="math inline">\(M\)</span>，选择一组开覆盖U<span
+class="math inline">\(_{\alpha}\)</span>以及坐标<span
+class="math inline">\(\Phi_{\alpha}\)</span>，我们记为一个图册（Atlas）<span
+class="math inline">\(\{\textrm{U}_{\alpha},\Phi_{\alpha}\}\)</span>，不同开集之间的转换函数（transition
+function）为： <span class="math display">\[g_{\alpha \beta} =
+\Phi_{\alpha} \circ \Phi^{-1}_{\beta}: \Phi_{\beta}(\textrm{U}_{\alpha
+\beta}) \rightarrow \Phi_{\alpha}(\textrm{U}_{\alpha \beta}),\]</span>
+其中U<span class="math inline">\(_{\alpha \beta} := \textrm{U}_{\alpha}
+\cap
+\textrm{U}_{\beta}\)</span>。一般来讲转换函数隶属于一般线性群GL(<span
+class="math inline">\(n,\mathbb{R}\)</span>)，但是对于一个配备有度规的黎曼流形<span
+class="math inline">\((M,g)\)</span>，我们总可以调整上述坐标，是的转换函数隶属于正交群O<span
+class="math inline">\((s,t)\)</span>，其中<span
+class="math inline">\(n=s+t\)</span>而<span
+class="math inline">\(s\)</span>和<span
+class="math inline">\(t\)</span>则是度规的号差。</p>
+<p>对于黎曼流形<span
+class="math inline">\((M,g)\)</span>，我们可以谈及这个流形是否是可定向的，也就是说可不可以找到一组坐标<span
+class="math inline">\(\{\Phi_{\alpha}\}\)</span>使得转换函数<span
+class="math inline">\(\{g_{\alpha \beta}\}\)</span>属于特殊正交群SO<span
+class="math inline">\((s,t)\)</span>，如果可以办到的话，我们就说流形是可定向的（orientable），反之则是不可定向的。为了探讨这一点，我们引入<span
+class="math inline">\(\{f_{\alpha \beta}\}\)</span>： <span
+class="math display">\[f_{\alpha \beta}(m) = \det g_{\alpha
+\beta}(m),\quad \forall m\in \textrm{U}_{\alpha\beta},\]</span>
+对于正交群我们总有<span class="math inline">\(f_{\alpha \beta} = \pm
+1\)</span>，因此<span class="math inline">\(f_{\alpha \beta}\)</span>
+可以看做是<span
+class="math inline">\(\mathbb{Z}_2\)</span>取值的。对于转换函数<span
+class="math inline">\(\{g_{\alpha
+\beta}\}\)</span>而言，它必须满足如下的cocycle条件： <span
+class="math display">\[g_{\alpha \beta}(m) g_{\beta \gamma}(m) g_{\gamma
+\alpha}(m) = 1,\quad \forall m \in \textrm{U}_{\alpha} \cap
+\textrm{U}_{\beta} \cap \textrm{U}_{\gamma},\]</span> 因此<span
+class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>也自然而然满足cocycle条件： <span
+class="math display">\[f_{\alpha \beta}(m) f_{\beta \gamma}(m) f_{\gamma
+\alpha}(m) = 1,\quad \forall m \in \textrm{U}_{\alpha}\cap
+\textrm{U}_{\beta} \cap \textrm{U}_{\gamma}.\]</span> 由于<span
+class="math inline">\(f_{\alpha \beta}\)</span>是<span
+class="math inline">\(\mathbb{Z}_2\)</span>取值的，如果我们记<span
+class="math inline">\(\mathbb{Z}_2 =
+{0,1}\)</span>并且满足如下环加法关系： <span
+class="math display">\[0+0=0,\quad 0+1=1+0=1,\quad 1+1=0,\]</span>
+那么上述cocycle条件可以写为： <span class="math display">\[\label{f}
+    f_{\alpha \beta}(m) - f_{\alpha \gamma}(m) + f_{\beta \gamma}(m) =
+0,\quad \forall m \in \textrm{U}_{\alpha}\cap \textrm{U}_{\beta} \cap
+\textrm{U}_{\gamma}.\]</span> 之后对于<span
+class="math inline">\(f_{\alpha
+\beta}\)</span>而言，我们将交互地使用<span
+class="math inline">\(\mathbb{Z}_2 = \{1,-1\}\)</span>或者<span
+class="math inline">\(\mathbb{Z}_2 =
+\{0,1\}\)</span>两种语言，前者的乘法则是后者的环加法。由<a href="#f"
+data-reference-type="eqref"
+data-reference="f">[f]</a>我们可以看出，<span
+class="math inline">\(\{f_{\alpha \beta}\}\)</span>实际上是<span
+class="math inline">\(\mathbb{Z}_2\)</span>取值的C<span
+class="math inline">\(\check{\textrm{e}}\)</span>ch上同调群的一个cocycle：
+<span class="math display">\[\{f_{\alpha \beta}\} \in
+\textrm{H}^1(M,\mathbb{Z}_2),\]</span> 并且我们称之为黎曼流形<span
+class="math inline">\((M,g)\)</span>的第一类Stiefel-Whitney类（The first
+Stiefel-Whitney class）。而流形可不可定向取决于<span
+class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>是否是一个coboundary，也就是说<span
+class="math inline">\(f_{\alpha \beta}\)</span>是否可以写成： <span
+class="math display">\[f_{\alpha \beta}(m) = f_{\alpha}(m) -
+f_{\beta}(m), \quad \forall m \in \textrm{U}_{\alpha}\cap
+\textrm{U}_{\beta},\]</span> 或者如果用<span
+class="math inline">\(\mathbb{Z}_2 =
+\{1,-1\}\)</span>的理解方式的话，上述关系为<span
+class="math inline">\(f_{\alpha \beta}(m) = f_{\alpha}(m)
+f^{-1}_{\beta}(m)\)</span>。如果<span class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>的确是一个coboundary的话，那么我们就可以定义一组新的坐标<span
+class="math inline">\(\Phi&#39;_{\alpha} = g_{\alpha} \circ
+\Phi_{\alpha}\)</span>，其中<span
+class="math inline">\(\{g_{\alpha}\}\)</span>为任意的满足<span
+class="math inline">\(\det g_{\alpha} =
+f_{\alpha}\)</span>的正交群元素。那么新的转换函数为： <span
+class="math display">\[g&#39;_{\alpha \beta} = \Phi&#39;_{\alpha} \circ
+\Phi&#39;^{-1}_{\beta}=g_{\alpha} \circ g_{\alpha \beta} \circ
+g_{\beta}^{-1},\]</span> 并且满足： <span
+class="math display">\[\begin{aligned}
+    \det g&#39;_{\alpha \beta} &amp;= \det g_{\alpha} \det g_{\alpha
+\beta} \det g^{-1}_{\beta}\nonumber \\ &amp;= f_{\alpha}\cdot f_{\alpha
+\beta}\cdot f^{-1}_{\beta} \nonumber \\ &amp;=f^2_{\alpha}\cdot
+f^{-2}_{\beta} = 1,\end{aligned}\]</span>
+由此我们可以看出，转换函数可以化为正交群的元素，因此按照定义为可定向的。反之，如果<span
+class="math inline">\((M,g)\)</span>为可定向的流形，那么我们可以证明<span
+class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>为平凡的，自然是一个coboundary。总结来说，一个流形是否可以定向，取决于它的第一类Stiefel-Whitney类是否为平凡的。</p>
+<h1 id="流形的自旋结构">流形的自旋结构</h1>
+<p>最后一章我们将讨论光滑流形的自旋结构。如果我们要谈论自旋结构（Pin或者Spin结构），我们首先要将不同开集之间的转换函数<span
+class="math inline">\(\{g_{\alpha \beta}\}\)</span>提升为<span
+class="math inline">\(\{ \tilde{g}_{\alpha \beta}
+\}\)</span>，而后者则属于Pin<span
+class="math inline">\((s,t)\)</span>或者Spin<span
+class="math inline">\((s,t)\)</span>，根据流形是否为可定向流形，或者第一类Stiefel-Whitney类是否为平凡的。</p>
+<p>具体来言，我们考虑<span class="math inline">\(\{g_{\alpha \beta} \in
+\textrm{O}(s,t)\}\)</span>的一个提升<span
+class="math inline">\(\{\tilde{g}_{\alpha \beta} \in
+\textrm{Pin}(s,t)\}\)</span>，并且根据Pin群与正交群的关系，后者需要满足：
+<span class="math display">\[\textrm{Ad}_{\tilde{g}_{\alpha \beta}} =
+g_{\alpha \beta},\]</span> 其中<span class="math inline">\(\textrm{Ad} :
+\textrm{Pin}(s,t) \rightarrow
+\textrm{O}(s,t)\)</span>是在之前定义的伴随映射。同时，<span
+class="math inline">\(\{\tilde{g}_{\alpha
+\beta}\}\)</span>作为转换函数则还需要满足cocycle条件： <span
+class="math display">\[\tilde{g}_{\alpha \beta}(m) \tilde{g}_{\beta
+\gamma}(m) \tilde{g}_{\gamma \alpha}(m) = 1,\quad \forall m \in
+\textrm{U}_{\alpha} \cap \textrm{U}_{\beta} \cap
+\textrm{U}_{\gamma}.\]</span>
+但实际上，上述条件不一定满足。如果我们对左式做伴随映射的话，那么我们有：
+<span class="math display">\[\textrm{Ad}_{\tilde{g}_{\alpha \beta}
+\tilde{g}_{\beta \gamma} \tilde{g}_{\gamma \alpha}} = g_{\alpha \beta}
+g_{\beta \gamma} g_{\gamma \alpha} = 1,\]</span> 因此: <span
+class="math display">\[\tilde{g}_{\alpha \beta}(m) \tilde{g}_{\beta
+\gamma}(m) \tilde{g}_{\gamma \alpha}(m) \in \textrm{Ker}(\textrm{Ad}) =
+\{1,-1\}.\]</span> 因此我们定义： <span
+class="math display">\[\tilde{f}_{\alpha \beta \gamma}(m) =
+\tilde{g}_{\alpha \beta}(m) \tilde{g}_{\beta \gamma}(m)
+\tilde{g}_{\gamma \alpha}(m) \in \textrm{Ker}(\textrm{Ad}) =
+\{1,-1\},\]</span> 如果<span class="math inline">\(\tilde{f}_{\alpha
+\beta \gamma} = 1\)</span>的话，那么我们说<span
+class="math inline">\((M,g)\)</span>可以允许一个Pin结构。对于<span
+class="math inline">\(\{\tilde{f}_{\alpha \beta
+\gamma}\}\)</span>而言，由于它也是<span
+class="math inline">\(\mathbb{Z}_2\)</span>取值的，我们可以将它看做C<span
+class="math inline">\(\check{\textrm{e}}\)</span>ch上同调群的一个cochain，并且经过一系列运算我们可以得知它满足如下的关系：
+<span class="math display">\[(\delta f)_{\alpha \beta \gamma \delta}
+\equiv \tilde{f}_{\alpha \beta \gamma}(m) \tilde{f}^{-1}_{\alpha \beta
+\delta}(m) \tilde{f}_{\alpha \gamma \delta}(m) \tilde{f}^{-1}_{\beta
+\gamma \delta}(m) = 1,\]</span> 对于任何的<span
+class="math inline">\(m\in \textrm{U}_{\alpha} \cap \textrm{U}_{\beta}
+\cap \textrm{U}_{\gamma} \cap
+\textrm{U}_{\delta}\)</span>，也就是说<span
+class="math inline">\(\{\tilde{f}_{\alpha \beta
+\gamma}\}\)</span>是一个<span
+class="math inline">\(\mathbb{Z}_2\)</span>取值的C<span
+class="math inline">\(\check{\textrm{e}}\)</span>ch上同调群的一个cocycle：
+<span class="math display">\[\{\tilde{f}_{\alpha \beta \gamma}\} \in
+\textrm{H}^2(M,\mathbb{Z}_2),\]</span> 并且我们称之为黎曼流形<span
+class="math inline">\((M,g)\)</span>的第二类Stiefel-Whitney类（The
+second Stiefel-Whitney class）。如果<span
+class="math inline">\(\{\tilde{f}_{\alpha \beta
+\gamma}\}\)</span>是一个coboundary的话，那么我们总可以有： <span
+class="math display">\[\tilde{f}_{\alpha \beta \gamma}(m) =
+\tilde{f}_{\alpha \beta}(m) \tilde{f}^{-1}_{\alpha \gamma}(m)
+\tilde{f}_{\beta \gamma}(m),\quad \forall m\in \textrm{U}_{\alpha} \cap
+\textrm{U}_{\beta} \cap \textrm{U}_{\gamma},\]</span>
+因此我们可以定义<span class="math inline">\(g&#39;_{\alpha \beta} =
+\tilde{f}_{\alpha \beta} \tilde{g}_{\alpha \beta} \in
+\textrm{Pin}(s,t)\)</span>，使得新的转移函数同时满足： <span
+class="math display">\[\textrm{Ad}_{g&#39;_{\alpha \beta}} = g_{\alpha
+\beta},\]</span> 以及 <span class="math display">\[g&#39;_{\alpha
+\beta}(m) g&#39;_{\beta \gamma}(m) g&#39;_{\gamma \alpha}(m) = 1,\quad
+\forall m \in \textrm{U}_{\alpha} \cap \textrm{U}_{\beta} \cap
+\textrm{U}_{\gamma},\]</span> 因此<span
+class="math inline">\((M,g)\)</span>允许一个Pin结构。反过来说，如果<span
+class="math inline">\((M,g)\)</span>允许一个Pin结构的话，那么可以证明<span
+class="math inline">\(\{\tilde{f}_{\alpha \beta
+\gamma}\}\)</span>是一个平凡的coboundary。总结来说，一个流形是否允许一个Pin结构，取决于它的第二类Stiefel-Whitney类是否为平凡的。</p>
+<p>如果流形<span
+class="math inline">\((M,g)\)</span>是可定向流形，也就是第一类Stiefel-Whitney类是平凡的话，那么流行上是否可以定义一个Spin结构同样取决于第二类Stiefel-Whitney类是否为平凡的。但是一个流形上可以选择的自旋结构并不唯一，如果我们选取<span
+class="math inline">\(\{\tilde{g}_{\alpha
+\beta}\}\)</span>为一组自旋结构的话，对于流形上任意一个<span
+class="math inline">\(\textrm{Ker}(Ad) =
+\mathbb{Z}_2\)</span>取值的cocycle<span
+class="math inline">\(\{f_{\alpha \beta}\}\in
+\textrm{H}^1(M,\mathbb{Z}_2)\)</span>，我们都可以定义新的转换函数<span
+class="math inline">\(g&#39;_{\alpha \beta} \equiv f_{\alpha}
+\tilde{g}_{\alpha \beta} \in \textrm{Spin}(s,t)\)</span>使得它同时满足：
+<span class="math display">\[\textrm{Ad}_{g&#39;_{\alpha \beta}} =
+g_{\alpha \beta} \in \textrm{SO}(s,t),\]</span> 以及 <span
+class="math display">\[g&#39;_{\alpha \beta}(m) g&#39;_{\beta \gamma}(m)
+g&#39;_{\gamma \alpha}(m) = 1,\quad \forall m \in \textrm{U}_{\alpha}
+\cap \textrm{U}_{\beta} \cap \textrm{U}_{\gamma}.\]</span>
+我们需要问的是，新的转换函数<span class="math inline">\(\{g&#39;_{\alpha
+\beta}\}\)</span>和原来的转换函数<span class="math inline">\(\{g_{\alpha
+\beta}\}\)</span>是不是等价的，这实际上取决于<span
+class="math inline">\(\{f_{\alpha \beta}\}\in
+\textrm{H}^1(M,\mathbb{Z}_2)\)</span>是不是平凡的。如果<span
+class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>是平凡的，也就是说我们有<span
+class="math inline">\(f_{\alpha \beta} = f_{\alpha}
+f^{-1}_{\beta}\)</span>，那么这样的话，通过一组坐标变换<span
+class="math inline">\(\tilde{\Phi}&#39;_{\alpha} = f_{\alpha}
+\tilde{\Phi}_{\alpha}\)</span>我们可以把两个转换函数设为一样的，因此它们是等价的。这里<span
+class="math inline">\(\Phi&#39;_{\alpha}\)</span>是自旋丛Spin<span
+class="math inline">\((M)\)</span>的平凡化（trivilization）。另一方面，如果<span
+class="math inline">\(\{f_{\alpha
+\beta}\}\)</span>是非平凡的，那么新的转换函数<span
+class="math inline">\(\{g&#39;_{\alpha
+\beta}\}\)</span>则给出了另外一种不等价的自旋结构。实际上我们有同构关系<span
+class="math inline">\(\textrm{H}^1(M,\mathbb{Z}_2) \cong
+\textrm{Hom}(\pi_1(M),\mathbb{Z}_2)\)</span>，也就是说自旋结构通常取决于流形上有多少不可收缩的1-cycle（圆环），如果有<span
+class="math inline">\(g\)</span>个的话，那么我们对于每个不可收缩的1-cycle可以选择<span
+class="math inline">\(\pm\)</span>两种不同的自旋结构，
+因此总的自旋结构有<span
+class="math inline">\(2^g\)</span>种。一个例子就是对于圆环面，我们一共有四种不同的自旋结构，在弦论中分别被称为:R-R、R-NS、NS-R、NS-NS。</p>
+<section class="footnotes">
+<div class="footnote-list">
+<ol>
+<li>
+<span id="fn:1" class="footnote-text"><span>Clifford代数是结合代数。
+<a href="#fnref:1" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:2"
+class="footnote-text"><span>注意这里的约定和很多理论物理书籍里的约定并不相同，双方的<span
+class="math inline">()</span>矩阵差一个虚数<span
+class="math inline">(i)</span>。
+<a href="#fnref:2" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+<li>
+<span id="fn:3"
+class="footnote-text"><span>这种定义方式不依赖于任何具体表示，类似于李代数中的Universal
+enveloping algebra。
+<a href="#fnref:3" rev="footnote" class="footnote-backref">
+↩︎</a></span></span>
+</li>
+</ol>
+</div>
+</section>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Math/" class="category-chain-item">Math</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Algebraic-Geometry/">#Algebraic Geometry</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Spin Structure</div>
+      <div>https://quantum-cyborg.github.io/2021/07/18/Math/Spin Structure/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Mario</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/01/Math/Sheaf/" title="Sheaf">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Sheaf</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/09/Others/Wingsuit%20Skydiving/" title="翼装飞行，是人类的黄金精神！">
+                        <span class="hidden-mobile">翼装飞行，是人类的黄金精神！</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
