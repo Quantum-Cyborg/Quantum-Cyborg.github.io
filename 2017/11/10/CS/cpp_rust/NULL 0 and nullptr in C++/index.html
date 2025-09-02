@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="碳基机器">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在 C&#x2F;C++ 中，为了防止野指针（指针指向的位置是不可知的），我们常常需要将指针赋值为空指针。在 C 中我们用 NULL 来表示空指针，而在 C++ 中则有 NULL 和 nullptr 两种空指针，并且其 NULL 的定义也和 C 语言中的完全不同。我们就在这篇文章中仔细研究一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++中的NULL、0和nullptr的区别">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2017/11/10/CS/cpp_rust/NULL%200%20and%20nullptr%20in%20C++/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="在 C&#x2F;C++ 中，为了防止野指针（指针指向的位置是不可知的），我们常常需要将指针赋值为空指针。在 C 中我们用 NULL 来表示空指针，而在 C++ 中则有 NULL 和 nullptr 两种空指针，并且其 NULL 的定义也和 C 语言中的完全不同。我们就在这篇文章中仔细研究一下。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-11-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-26T05:39:37.417Z">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C/C++中的NULL、0和nullptr的区别 - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C/C++中的NULL、0和nullptr的区别"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        碳基机器
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-11-10 00:00" pubdate>
+          2017年11月10日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C/C++中的NULL、0和nullptr的区别</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在 <code>C/C++</code> 中，为了防止野指针（指针指向的位置是不可知的），我们常常需要将指针赋值为空指针。在 <code>C</code> 中我们用 <code>NULL</code> 来表示空指针，而在 <code>C++</code> 中则有 <code>NULL</code> 和 <code>nullptr</code> 两种空指针，并且其 <code>NULL</code> 的定义也和 <code>C</code> 语言中的完全不同。我们就在这篇文章中仔细研究一下。 <span id="more"></span></p>
+<h2 id="null">NULL</h2>
+<p>在 <code>C</code> 语言中，我们使用 <code>NULL</code> 来表示空指针。他是一个宏定义，其定义是 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> NULL ((void *)0)</span><br></code></pre></td></tr></table></figure> 也就是说 <code>NULL</code> 其实是一个 <code>void*</code> 类型的指针。并且在 <code>C</code> 语言中，任何类型的指针都可以（隐式地）转换为 <code>void *</code> 类型，反过来也成立。但是在 <code>C++</code> 中则不存在这种隐式的转换。比如在 <code>C</code> 语言中， <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> *i = (<span class="hljs-type">void</span> *)<span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure> 上述的写法是完全合法的，但是使用 <code>C++</code> 编译器则会报错。在 <code>C++</code> 中 <code>NULL</code> 被定义为整数 <code>0</code> : <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">ifndef</span> NULL</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">ifdef</span> __cplusplus</span><br>        <span class="hljs-meta">#<span class="hljs-keyword">define</span> NULL 0</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">else</span></span><br>        <span class="hljs-meta">#<span class="hljs-keyword">define</span> NULL ((void *)0)</span><br>    <span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure></p>
+<h2 id="section">0</h2>
+<p>因此在 <code>C++</code> 中，定义一个空指针： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;<br></code></pre></td></tr></table></figure> 实际上就是将指针 <code>p</code> 赋值为零。在 <code>C++</code> 中为0的指针都会被认为是空指针。 但是这样的话，就会造成一些歧义：0 即可以表示整数常量，又可以表示空指针常量。那么在下面的经典例子中： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">int</span>)</span> </span>&#123;&#125;    <span class="hljs-comment">// #1</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">foo</span><span class="hljs-params">(<span class="hljs-type">char</span>*)</span> </span>&#123;&#125;  <span class="hljs-comment">// #2</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-built_in">foo</span>(<span class="hljs-literal">NULL</span>);<br>&#125;<br></code></pre></td></tr></table></figure> <code>foo(NULL)</code> 到底应该调用哪个函数？既然 <code>NULL</code> 是指针，它就应该调用 <code>#2</code> ，但实际上 <code>NULL</code> 又被定义为整数0，所以会调用 <code>#1</code> .</p>
+<p>为了解决这种歧义性，于是又引入了一种新的空指针常量 <code>nullptr</code> .</p>
+<h2 id="nullptr">nullptr</h2>
+<p>在 <code>C++11</code> 中引入了一个新的关键字 <code>nullptr</code>，其定义为 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">decltype</span><span class="hljs-params">(<span class="hljs-literal">nullptr</span>)</span> <span class="hljs-type">nullptr_t</span></span>;<br></code></pre></td></tr></table></figure> 这里 <code>decltype</code> 也是 <code>C++11</code> 中新引入的关键字，用于自动类型推导。</p>
+<ul>
+<li><code>nullptr_t</code> 是一种数据类型，而 <code>nullptr</code> 是一个常数，是该类型的一个实例。</li>
+<li>因此可以通过 <code>nullptr_t</code> 类型创建另一个新的实例。但所有定义为 <code>nullptr_t</code> 类型的数据都是等价的，行为也是完全一致的。</li>
+<li><code>nullptr</code> 是一个编译期常量，其类型为 <code>nullptr_t</code>，它既不是整型类型，也不是指针类型。</li>
+</ul>
+<p>除此之外，<code>nullptr</code> 还有一些其他的特性：</p>
+<ul>
+<li><code>std::nullptr_t</code> 类型并不是指针类型，但可以隐式转换成任意一个指针类型。</li>
+<li><code>nullptr_t</code> 类型数据不能转换为非指针类型，即使使用<code>reinterpret_cast&lt;nullptr_t&gt;()</code> 的方法也不行。</li>
+<li><code>nullptr_t</code> 类型数据不适用于算术运算表达式。</li>
+<li><code>nullptr_t</code> 类型数据可以用于关系运算表达式，但仅能与 <code>nullptr_t</code> 类型数据或者指针类型数据进行比较，当且仅当关系运算符为 <code>==，&lt;=，&gt;=</code> 等时返回true。</li>
+</ul>
+<p>这些特性可以在代码中得到验证： <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//nullptr可以隐式转换为char*</span><br><span class="hljs-type">char</span> *cp = <span class="hljs-literal">nullptr</span>;<br><br><span class="hljs-comment">//nullptr不能转换为非指针类型，任何类型也不能转换为nullptr_t</span><br><span class="hljs-type">int</span> i1 = <span class="hljs-literal">nullptr</span>; <span class="hljs-comment">//error</span><br><span class="hljs-type">int</span> i2 = <span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">nullptr_t</span>&gt;(<span class="hljs-literal">nullptr</span>); <span class="hljs-comment">//error</span><br><br><span class="hljs-comment">//nullptr与nullptr_t类型变量可以作比较，当使用==，&lt;=，&gt;=符号作比较时才返回true</span><br><span class="hljs-type">nullptr_t</span> nptr;<br><span class="hljs-keyword">if</span> (nptr == <span class="hljs-literal">nullptr</span>) <span class="hljs-comment">//nullptr_t nptr == nullptr</span><br><span class="hljs-keyword">if</span> (nptr &lt; <span class="hljs-literal">nullptr</span>) <span class="hljs-comment">//nullptr_t nptr &gt;= nullptr</span><br><br><span class="hljs-comment">//不能转换为整型或者bool类型</span><br><span class="hljs-keyword">if</span> (<span class="hljs-number">0</span> == <span class="hljs-literal">nullptr</span>); <span class="hljs-comment">//error</span><br><span class="hljs-keyword">if</span> (<span class="hljs-literal">nullptr</span>); <span class="hljs-comment">//error</span><br><br><span class="hljs-comment">//不能进行算术运算</span><br><span class="hljs-literal">nullptr</span> += <span class="hljs-number">1</span>; <span class="hljs-comment">//error</span><br><span class="hljs-literal">nullptr</span> * <span class="hljs-number">5</span>; <span class="hljs-comment">//error</span><br></code></pre></td></tr></table></figure></p>
+<h3 id="与-void-区别">与 <code>void*</code> 区别</h3>
+<ul>
+<li>在 <code>C++11</code> 标准中，<code>nullptr</code> 类型数据所占用的内存空间，与 <code>void*</code> 所占内存空间大小相同，即 <code>sizeof(nullptr_t) == sizeof(void*)</code>.</li>
+<li>语法内涵不同，<code>nullptr</code> 是一个编译期常量，而 <code>(void*)0</code> 只是一个强制转换表达式，其返回的也是一个 <code>void*</code> 指针类型。</li>
+<li>在 <code>C++</code> 语言中，<code>nullptr</code> 到任何指针的转换是隐式的，而 <code>(void*)0</code> 则必须经过类型转换后才能使用。</li>
+</ul>
+<h3 id="nullptr-可能的实现"><code>nullptr</code> 可能的实现</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">nullptr_t</span><br>&#123;<br>    <span class="hljs-type">void</span> <span class="hljs-keyword">operator</span>&amp;() <span class="hljs-type">const</span> = <span class="hljs-keyword">delete</span>;  <span class="hljs-comment">// Can&#x27;t take address of nullptr</span><br><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">operator</span> T*() <span class="hljs-type">const</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">C</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br>    <span class="hljs-keyword">inline</span> <span class="hljs-keyword">operator</span> T C::*() <span class="hljs-type">const</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;;<br><span class="hljs-type">nullptr_t</span> <span class="hljs-literal">nullptr</span>;<br></code></pre></td></tr></table></figure>
+<p>源码这部分需要继续学习~</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CS/" class="category-chain-item">CS</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C-C/">#C/C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C/C++中的NULL、0和nullptr的区别</div>
+      <div>https://quantum-cyborg.github.io/2017/11/10/CS/cpp_rust/NULL 0 and nullptr in C++/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>碳基机器</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2017年11月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/03/CS/cluster/Torque%E7%9A%84%E5%AE%89%E8%A3%85/" title="Torque PBS系统的安装">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Torque PBS系统的安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/05/26/Philosophy/%E6%91%B9%E7%8A%B6%E8%AF%8D%E5%92%8C%E5%AD%98%E5%9C%A8/" title="摹状词和存在">
+                        <span class="hidden-mobile">摹状词和存在</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="技术内核的终端">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="手征反常 我们都知道，诺特定理告诉我们，如果系统的作用量在某一变换下不变，则存在对应的守恒流。不过这是经典场论的结论，在量子化之后，这个结论还能成立吗？大多数情况下，这个定理是有量子版本的对应的，但是在某些情况，这一定理的量子版本就不再成立了。我们把经典系统的对称性在量子化后丢失的现象叫做量子反常。 现在已知好多种量子反常，比如手征反常、规范反常、引力反常 等。我们这里介绍的是历史上最早发现的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手征反常与轴子">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2023/12/29/Physics/Chiral%20Anomaly%20and%20Axion/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="手征反常 我们都知道，诺特定理告诉我们，如果系统的作用量在某一变换下不变，则存在对应的守恒流。不过这是经典场论的结论，在量子化之后，这个结论还能成立吗？大多数情况下，这个定理是有量子版本的对应的，但是在某些情况，这一定理的量子版本就不再成立了。我们把经典系统的对称性在量子化后丢失的现象叫做量子反常。 现在已知好多种量子反常，比如手征反常、规范反常、引力反常 等。我们这里介绍的是历史上最早发现的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2023/12/29/Physics/Chiral%20Anomaly%20and%20Axion/triangle_diagram.png">
+<meta property="article:published_time" content="2023-12-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-02T00:41:15.886Z">
+<meta property="article:tag" content="Axion">
+<meta property="article:tag" content="QFT">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://quantum-cyborg.github.io/2023/12/29/Physics/Chiral%20Anomaly%20and%20Axion/triangle_diagram.png">
+  
+  
+  
+  <title>手征反常与轴子 - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="手征反常与轴子"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        技术内核的终端
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-29 00:00" pubdate>
+          2023年12月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">手征反常与轴子</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="手征反常">手征反常</h1>
+<p>我们都知道，诺特定理告诉我们，如果系统的作用量在某一变换下不变，则存在对应的守恒流。不过这是经典场论的结论，在量子化之后，这个结论还能成立吗？大多数情况下，这个定理是有量子版本的对应的，但是在某些情况，这一定理的量子版本就不再成立了。我们把经典系统的对称性在量子化后丢失的现象叫做量子反常。</p>
+<p>现在已知好多种量子反常，比如手征反常、规范反常、引力反常 等。我们这里介绍的是历史上最早发现的手征反常，又称为：轴矢反常、Adler-Bell-Jackiw（ABJ）反常或者三角反常。从历史上看，量子反常这个名字的由来，是源于“量子效应对经典对称性的破坏”的描述。</p>
+<p>我们首先介绍狄拉克场，然后看看狄拉克场中的量子反常。</p>
+<h2 id="狄拉克场">狄拉克场</h2>
+<p>狄拉克场的拉氏量可以写为： <span class="math display">\[
+\mathscr{L}=\bar{\psi} \gamma^\mu\left(i \partial_\mu+e A_\mu+b_\mu \gamma^5\right) \psi-m \bar{\psi} \psi
+\]</span> 这里 <span class="math inline">\(\bar{\psi}=\psi^{\dagger} \gamma^0\)</span>，而 <span class="math inline">\(m\)</span> 则代表狄拉克费米子的质量。费米子与外部轴矢势 <span class="math inline">\(b_\mu \equiv A_\mu^5\)</span> 耦合。狄拉克 <span class="math inline">\(\gamma-\)</span>矩阵满足反对易关系 <span class="math inline">\(\left\{\gamma^\mu, \gamma^\nu\right\}=-2 \eta^{\mu \nu}\)</span>，其中 <span class="math inline">\(\eta_{\mu \nu}=\operatorname{diag}(-1,1,1,1)\)</span>，使得 <span class="math inline">\(\gamma^0=(\gamma^0)^{\dagger}\)</span> 是厄米的，而 <span class="math inline">\(\gamma^i=-(\gamma^i)^{\dagger}\)</span> 是反厄米的。手征矩阵 <span class="math inline">\(\gamma^5 \equiv =i \gamma^0 \gamma^1 \gamma^2 \gamma^3=(\gamma^5)^{\dagger}\)</span> 也是厄米的，其特征值 <span class="math inline">\(\pm 1\)</span> 分别对应于右手和左手手征性。</p>
+<h2 id="两种守恒量">两种守恒量</h2>
+<p>狄拉克场的拉氏量在局域 <span class="math inline">\(U(1)^{\mathrm{EM}}\)</span> 相位变换下保持不变，同时还存在另一种局域手征相位变换 <span class="math inline">\(U(1)^{\text {ch }}\)</span>。这两种变换分别对应着电荷守恒和手征守恒： 1. 拉氏量在局域 <span class="math inline">\(U(1)^{\mathrm{EM}}\)</span> 相位变换下不变 <span class="math display">\[
+\psi \rightarrow e^{i \alpha} \psi, \quad \bar{\psi} \rightarrow \bar{\psi} e^{-i \alpha}, \quad e A_\mu \rightarrow e A_\mu+\partial_\mu \alpha
+\]</span> 2. 第二个变换是局域手征相位变换 <span class="math inline">\(U(1)^{\text {ch }}\)</span> <span class="math display">\[
+\psi \rightarrow e^{i \beta \gamma^5} \psi, \quad \bar{\psi} \rightarrow \bar{\psi} e^{i \beta \gamma^5}, \quad b_\mu \rightarrow b_\mu+\partial_\mu \beta,
+\]</span> 其中右手和左手手征性以相反方式变换。</p>
+<ul>
+<li><span class="math inline">\(U(1)^{\mathrm{EM}}\)</span> 变换可以“吞并”并进一步与矢势 <span class="math inline">\(\mathbf{A}\)</span>相互抵消。</li>
+<li><span class="math inline">\(U(1)^{\mathrm{ch}}\)</span> 变换则可以“吞并”轴矢势 <span class="math inline">\(b_\mu\)</span>。当 <span class="math inline">\(\beta=b_\mu x^\mu=\mathbf{b}\cdot\mathbf{r}-b_0t\)</span> 时，轴矢势会被完全抵消掉。</li>
+</ul>
+<p>根据诺特定理，这两个经典不变性意味着<strong>电流</strong>和<strong>轴向</strong>电流的守恒， <span class="math display">\[
+J^\mu=\frac{\delta S}{\delta A_\mu}=e \bar{\psi} \gamma^\mu \psi, \quad J_5^\mu=\frac{\delta S}{\delta b_\mu}=\bar{\psi} \gamma^\mu \gamma^5 \psi
+\]</span> 其中 <span class="math display">\[
+\partial_\mu J^\mu=0, \quad \partial_\mu J_5^\mu=2im \bar{\psi} \gamma^5 \psi
+\]</span> 可以看到轴矢流仅仅在 <span class="math inline">\(m=0\)</span> 时守恒。因此，当 <span class="math inline">\(m=0\)</span> 时，出现明显的 <span class="math inline">\(U(1)^{\mathrm{EM}} \otimes U(1)^{\mathrm{ch}}\)</span> 对称性。</p>
+<h2 id="量子情况">量子情况</h2>
+<p>事实上，在量子理论中，不可能同时满足 <span class="math inline">\(U(1)^{\mathrm{EM}}\)</span> 规范不变性和 <span class="math inline">\(U(1)^{\mathrm{ch}}\)</span> 手征不变性。</p>
+<h3 id="从测度项来看">从测度项来看</h3>
+<p>在量子理论中，我们需要考虑测度的变换， <span class="math display">\[
+\mathcal{D} \psi \mathcal{D} \bar{\psi} \to \mathcal{D} \psi \mathcal{D} \bar{\psi} \ \rm{det}[e^{i \beta \gamma^5}] = \mathcal{D} \psi \mathcal{D} \bar{\psi} \  e^{i \Delta S_\theta}
+\]</span> 这里 <span class="math inline">\(\Delta S_\theta =\mathrm{Tr} [\theta(x)\gamma^5]\)</span>，因此我们得到了变换后的配分函数 <span class="math display">\[
+Z^{\prime}=\int \mathcal{D} \psi \mathcal{D} \bar{\psi} \ e^{i\left(S+\Delta S_\theta\right)}
+\]</span></p>
+<p>其中 <span class="math display">\[
+\begin{aligned}
+&amp; S=\int d^4 x \bar{\psi} i \gamma^\mu\left(\partial_\mu+i A_\mu\right) \psi=\int d^4 x \bar{\psi} i \gamma^\mu D_\mu \psi, \\
+&amp; \Delta S_\theta=\operatorname{Tr}\left[\theta(x) y^5\right]=\int d^4 x \theta(x) \bar{\psi} \gamma^5 \psi .
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\gamma^\mu D_\mu \phi_n(x)=\varepsilon_n \phi_n(x)
+\]</span></p>
+<p>在 <span class="math inline">\(S_D\)</span> 的本征态下，反常作用量 <span class="math inline">\(\Delta S_\theta\)</span> 可以写为 <span class="math display">\[
+\Delta S_\theta=\int d^4 x \theta(x) \sum_n \phi_n^*(x) \gamma^5 \phi_n(x),
+\]</span></p>
+<p>积掉费米子场，最终反常作用量为 <span class="math display">\[
+\Delta S_\theta = \int \mathrm{d}^4x \ \theta(x) \mathbf{A}(x) = \frac{e^2}{32\pi^2} \int  \mathrm{d}^4x \ \theta(x) \epsilon^{\mu\nu\rho\lambda} F_{\mu\nu} F_{\rho\lambda}
+\]</span> 这给出了手征反常电流方程 <span class="math display">\[
+\partial_\mu J^\mu_5 = -\frac{e^2}{16\pi^2} \epsilon^{\mu\nu\rho\lambda} F_{\mu\nu} F_{\rho\lambda}=\frac{2\alpha}{\pi} \mathbf{E} \cdot \mathbf{B}
+\]</span></p>
+<h3 id="从费曼图来看">从费曼图来看</h3>
+<p>这些对称性的冲突首次出现在三角图的单圈级别： <img src="triangle_diagram.png" srcset="/img/loading.gif" lazyload /></p>
+<p>该单圈图中评估费米子三角振幅的过程， <span class="math display">\[
+\Gamma_5^{\mu \alpha \beta}(p, q)=\left.i \int d^4 x \int d^4 y e^{i p \cdot x+i q \cdot y}\left\langle 0\left|\mathcal{T} J_5^\mu(0) J^\alpha(x) J^\beta(y)\right| 0\right\rangle\right|_{A=0}
+\]</span> 通过施加低能理论的适当对称性来进行动量空间中的计算。</p>
+<h1 id="轴子电动力学">轴子电动力学</h1>
+<p>完整的作用量包含了三部分：狄拉克费米子、电磁场以及反常部分 <span class="math inline">\(S=S_D+S_{E M}+\Delta S_\theta\)</span>， <span class="math display">\[
+\begin{gathered}
+S_D=\int d^4 x \bar{\psi} i \gamma^\mu\left(\partial_\mu+i A_\mu\right) \psi, \\
+S_{E M}=-\frac{1}{4} \int d^4 x F_{\mu \nu} F^{\mu \nu}, \\
+\Delta S_\theta=\frac{e^2}{32 \pi^2} \int d^4 x \theta(x) \epsilon^{\mu \nu \rho \lambda} F_{\mu \nu} F_{\rho \lambda} .
+\end{gathered}
+\]</span></p>
+<p>积掉狄拉克费米子场使其仅仅成为背景，并且他会影响介电常数 <span class="math inline">\(\epsilon\)</span> 和 <span class="math inline">\(\mu\)</span>，于是我们只留下了关于电磁场的方程：</p>
+<p><span class="math display">\[
+\begin{gathered}
+\boldsymbol{\nabla} \cdot(\mathbf{E}-c \kappa \theta \mathbf{B})=\frac{\rho_e}{\epsilon_0}, \\
+\nabla \times(c \mathbf{B}+\kappa \theta \mathbf{E})=\partial_t(\mathbf{E}-c \kappa \theta \mathbf{B}) / c+c \mu_0 \mathbf{J}_e, \\
+\boldsymbol{\nabla} \cdot(c \mathbf{B}+\kappa \theta \mathbf{E})=0, \\
+\nabla \times(\mathbf{E}-c \kappa \theta \mathbf{B})+\partial_t(c \mathbf{B}+\kappa \theta \mathbf{E}) / c=0, \\
+\square \theta=-\frac{\kappa}{\mu_0 c} \mathbf{E} \cdot \mathbf{B}-\frac{\partial U(\theta)}{\partial \theta} .
+\end{gathered}
+\]</span> 从方程中我们可以观察到三个明显的性质： 1. 电场与轴子耦合在一起会形成等效的磁场：<span class="math inline">\((c \mathbf{B}+\kappa \theta \mathbf{E})\)</span>. 2. 而磁场与轴子耦合在一起则会形成等效的电场：<span class="math inline">\((\mathbf{E}-c \kappa \theta \mathbf{B})\)</span>. 3. 垂直的磁场和电场 <span class="math inline">\(-\frac{\kappa}{\mu_0 c} \mathbf{E} \cdot \mathbf{B}\)</span> 可以产生轴子，可以形成轴子源。</p>
+<h2 id="外尔半金属中的轴子">外尔半金属中的轴子</h2>
+<p>外尔半金属（Weyl semimetals）是一类具有non-trivial拓扑性质的材料。在外尔半金属中，电子的能带结构中会出现一种叫做“外尔点”（Weyl points）的特殊交点，这些交点对应着一种质量为零的费米子，这种费米子被称为外尔费米子。每个外尔点都具有特定的手征性，并且总是正反手性成对出现（这是晶格模型的特征）。同时轴子也可以出现在外尔半金属中，但在外尔半金属中，轴子并不直接对应于粒子物理中的基本轴子，而是指一种拓扑性质，和外尔半金属中的电磁响应紧密相连。</p>
+<p>轴子在外尔半金属中的作用可以通过“轴子电磁响应”来理解，这种响应机制可以影响材料的电磁性质。</p>
+<p>通过动态介电常数响应，拓扑磁电效应等，以及在波导结构中的应用。设 <span class="math inline">\(\rho=\mathbf{J}=0\)</span> 得到 <span class="math display">\[
+\omega^2-k^2= \pm\left(p_0 k-\omega p \cos \varphi\right)\left[1-\frac{p^2 \sin ^2 \varphi}{\omega^2-k^2}\right]^{-\frac{1}{2}}
+\]</span></p>
+<p>其中<span class="math inline">\(p=\frac{e^2}{2\pi^2}b\)</span>，<span class="math inline">\(p_0=\frac{e^2}{2\pi^2}b_0\)</span>，<span class="math inline">\(\varphi\)</span> 是 <span class="math inline">\(\mathbf{p}\)</span> 和 <span class="math inline">\(\boldsymbol{k}\)</span> 之间的夹角，<span class="math inline">\(\pm\)</span> 代表左右手圆偏振光极化方向。这个色散关系还是比较复杂的，上式复杂的右边项是由手征反常导致的，而左边则是光学上线性色散 <span class="math inline">\(\omega= \pm k\)</span> 。</p>
+<p><strong>1. 双折射</strong> 为了看出双折射的效应，不妨做一个想象实验：将一束沿着 <span class="math inline">\(z\)</span> 方向传播的平面波，同时 Weyl 半金属中 <span class="math inline">\(p\)</span> 也设为 <span class="math inline">\(z\)</span> 方向，则夹角 <span class="math inline">\(\varphi=0\)</span>，上式可化为 <span class="math display">\[
+\omega \approx \pm \sqrt{k_z^2 \pm\left(p_0-p\right) k_z} .
+\]</span></p>
+<p>对右边项进行零阶近似即 <span class="math inline">\(\omega=k_z\)</span>，因此得到一个有效的色散关系。一般情况下，<span class="math inline">\(\delta=\left(p_0-p\right)\)</span> 是一个小量，从上式可以明显看出在 <span class="math inline">\(z\)</span> 方向传播的光场会出现两个等相位面，这就是 Weyl 半金属中手征反常造成的双折射现象。</p>
+<p><strong>2. 速子</strong> 另一个极端情况是当 <span class="math inline">\(k_z&lt;\delta\)</span> 时，其中一支模式会变成虚频率，在场论中被认为是速子模式（tachyon，一种超光速的粒子激发），然而在实际材料中，其传播是指数衰减的消逝波模式。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Physics/" class="category-chain-item">Physics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Axion/">#Axion</a>
+      
+        <a href="/tags/QFT/">#QFT</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>手征反常与轴子</div>
+      <div>https://quantum-cyborg.github.io/2023/12/29/Physics/Chiral Anomaly and Axion/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>技术内核的终端</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/06/Physics/Radio-frequency%20spectroscopy/" title="Cold Atom: 射频谱学 学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Cold Atom: 射频谱学 学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/24/Life/New_Zealand_Life/" title="存点图 记录生活">
+                        <span class="hidden-mobile">存点图 记录生活</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1137 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="碳基机器">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="从LC电路到超导量子比特 我们首先考虑如何从经典的LC电路出发来实现量子比特。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超导量子比特：基本知识">
+<meta property="og:url" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/index.html">
+<meta property="og:site_name" content="多世界研究所">
+<meta property="og:description" content="从LC电路到超导量子比特 我们首先考虑如何从经典的LC电路出发来实现量子比特。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/LC_circuit.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/LC_level.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/three_type_qubit.jpg">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/Phase_Qubits.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/Charge_Qubits.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/Flux_Qubits.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/Control_Qubits.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/CL_Qubits_Couple.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/coupler.png">
+<meta property="og:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/Readout_Qubits.png">
+<meta property="article:published_time" content="2022-10-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-12-29T03:36:31.152Z">
+<meta property="article:tag" content="Quantum Computing">
+<meta property="article:tag" content="Superconducting Quantum Qubits">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://quantum-cyborg.github.io/2022/10/20/Physics/SC%20Qubits%20-%20Basic/LC_circuit.png">
+  
+  
+  
+  <title>超导量子比特：基本知识 - 多世界研究所</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"quantum-cyborg.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":110,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="多世界研究所" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>多世界研究所</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="超导量子比特：基本知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        碳基机器
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-20 00:00" pubdate>
+          2022年10月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">超导量子比特：基本知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="从lc电路到超导量子比特">从LC电路到超导量子比特</h2>
+<p>我们首先考虑如何从经典的LC电路出发来实现量子比特。 <span id="more"></span></p>
+<h3 id="经典lc电路的量子化">经典LC电路的量子化</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="LC_circuit.png" srcset="/img/loading.gif" lazyload
+alt="LC 经典电路" /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 1. LC 经典电路</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>LC</em>
+电路最重要的元件是电感和电容，存储在这两个元件上的能量是： <span
+class="math display">\[\begin{align*}
+\mathcal{H}&amp;=\frac12 CV^2 + \frac12 LI_L^2 \\
+&amp;= \frac{Q^2}{2C} + \frac{\Phi^2}{2L}.
+\end{align*}\]</span> 这里<span
+class="math inline">\(C\)</span>是电容，<span
+class="math inline">\(L\)</span>是电感，<span
+class="math inline">\(Q\)</span>是存储在电容上的电荷，而<span
+class="math inline">\(\Phi\)</span>是存储在电感上的磁通量。</p>
+<p>我们知道处在简谐势中的粒子的 Hamiltonian 是 <span
+class="math display">\[
+H=\frac{p^2}{2m}+\frac{1}{2}m\omega^2x^2
+\]</span> 我们取如下的对应关系: <span
+class="math inline">\(m=C,p=Q,\Phi=x\)</span> 与 <span
+class="math inline">\(\omega=1/\sqrt{LC}\)</span>，那么这个 Hamiltonian
+就会完全变成上述经典LC电路的Hamiltonian。因此，我们可以使用类似的量子化方法来对经典的
+<em>LC</em>
+电路进行量子化（严格的过程可以从拉格朗日量中慢慢推导出来）。我们首先将
+<span class="math inline">\(Q\)</span> 与 <span
+class="math inline">\(\Phi\)</span> 变成算符，并且其满足对易关系 <span
+class="math inline">\([\hat{\Phi},\hat{Q}]=i\hbar\)</span>.
+然后可以定义升降算符 <span class="math display">\[
+\begin{aligned}
+\hat{\Phi} &amp;= \sqrt{\frac{\hbar}{2\omega C}}
+\left(\hat{a}+\hat{a}^{\dagger} \right) \\
+\hat{Q} &amp;= -i \sqrt{\frac{\hbar \omega C}{2}}
+\left(\hat{a}-\hat{a}^{\dagger} \right)
+\end{aligned}
+\]</span> 于是 <em>LC</em> 电路的 Hamiltonian 就可以简单地表示为 <span
+class="math display">\[
+\mathcal{H}=\hbar \omega (\hat{a}^{\dagger}\hat{a} + \frac12)
+\]</span> 其能谱就是间距为 <span
+class="math inline">\(\hbar\omega\)</span> 的等间距能级，如图2.(b)
+所示</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="LC_level.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 2.
+经典LC电路量子化之后的能谱</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="构建量子比特">构建量子比特</h3>
+<p>如果只是简单地将经典 <em>LC</em>
+电路量子化，我们就会发现其能级是等间距的。因此如果我们将能量最低的两个态取做量子比特
+<span class="math inline">\(|0\rangle\)</span> 与 <span
+class="math inline">\(|1\rangle\)</span>，并且将其耦合起来，实际上这个耦合会将量子比特与更上面的能级
+<span class="math inline">\(|2\rangle, |3\rangle ...\)</span>
+也耦合起来，如上图(b)所示，这显然不是我们所希望的。因此，我们需要一种方法将能级给非线性化，使得
+<span class="math inline">\(|0\rangle\)</span> 与 <span
+class="math inline">\(|1\rangle\)</span> 态之间的能量差 <span
+class="math inline">\(E_{01}\)</span>
+与其他能级之间的能量差不一样。而使得这一点成为可能的，就是约瑟夫森结。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Josephson_junction.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 3. 约瑟夫森结</em></td>
+</tr>
+</tbody>
+</table>
+<p>约瑟夫森结如上图所示，左右两边各有两块超导体，在其中间加入一块绝缘体将其隔绝开来。中间的薄绝缘体会形成一个势垒，而左右的超导体各自有一个破坏了
+<span class="math inline">\(U(1)\)</span>
+对称性的宏观波函数，这两个波函数之间会有微弱的耦合，从而会导致其粒子数与相位发生演化，其演化方程如下所示：
+<span class="math display">\[
+\begin{align}
+I(t) &amp;= I_c \sin(\phi(t)) \\
+\frac{\rm{d} \phi(t)}{\rm{d} t} &amp;= \frac{2 \pi V(t)}{\Phi_0}
+\end{align}
+\]</span> 其中 <span
+class="math inline">\(\phi=\phi_\text{右}-\phi_\text{左}\)</span>
+是左右波函数的相位之差。根据这两个基本方程，我们就可以得到其中蕴含的能量是
+<span class="math display">\[
+\begin{aligned}
+&amp; \mathcal{U}_J=\int_{-\infty}^t I V d t=I_c \frac{\Phi_0}{2 \pi}
+\int \sin \phi d \phi \\
+&amp; =-I_c \frac{\Phi_0}{2 \pi} \cos \phi=-E_J \cos \phi \text {, }
+\end{aligned}\]</span> 将 <span class="math inline">\(\cos\phi\)</span>
+做展开，除了二次项之外，会有更高阶的偶次项。而将这些高阶偶次项进行量子化，就可以得到四算符的形式：
+<span class="math display">\[
+\begin{aligned}
+E_J \cos \phi &amp;= 1-\frac{1}{2} E_J \phi^2+\frac{1}{24} E_J
+\phi^4+\mathcal{O}\left(\phi^6\right) \\
+\phi^4 &amp;\propto  a^{\dagger} a^{\dagger} a a
+\end{aligned}
+\]</span> 这个非线性项，会使得能级不再线性地分布。如上图 (d) 所示，<span
+class="math inline">\(E_{01}\)</span> 与 <span
+class="math inline">\(E_{12},E_{23}.....\)</span>
+等等完全不相等。这样的话，将最下面的两个态作为量子比特 <span
+class="math inline">\(|0\rangle\)</span> 和 <span
+class="math inline">\(|1\rangle\)</span> 就是安全的。</p>
+<p>其实约瑟夫森结本身具有等效的电容与电感。两个被隔绝的超导体天然就是一个电容。而电感的来源，我们可以从约瑟夫森结的基本方程得到：
+<span class="math display">\[
+\frac{d I_J(t)}{dt} = I_0 \cos\phi \frac{2\pi}{\Phi_0} \cdot V(t)
+\]</span> 所以电感强度就是 <span
+class="math inline">\(L_J=\frac{\Phi_0}{2\pi I_0 \cos\phi}\)</span>.</p>
+<h2 id="三种基本的超导量子比特电路">三种基本的超导量子比特电路</h2>
+<p>由上面的讨论我们知道，一般的超导量子比特电路基本上是由电容、电感、和约瑟夫森结所组成的。其哈密顿量就是由这简单的三项所构成的：
+<span class="math display">\[
+H=E_c \hat{n}^2 + E_L \frac{\phi^2}{2}-E_J \cos\phi
+\]</span>
+但我们可以对其稍微做一些变形，比如取掉电容或者电感之类的，就可以得到具有不同特性的超导量子比特电路。我们这里简单讨论一下变形所得到的三种典型电路：相位量子比特、电荷量子比特、与磁通量子比特。
+由于约瑟夫森结的存在，会导致两种能量之间有竞争，一种是约瑟夫森耦合能
+<span class="math inline">\(E_J=I_c\Phi_0/2\pi\)</span>，另一种是电荷能
+<span class="math inline">\(E_c=2e^2/C_J\)</span>.
+以上三种超导量子比特的主要区别就在于约瑟夫森耦合能和电荷能之间的相对大小的不同。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Circuit_Deformation.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 4.
+超导量子比特电路的变形</em></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="three_type_qubit.jpg" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 5.
+超导量子比特的演变过程</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="相位量子比特">相位量子比特</h3>
+<p>在上述的 Hamiltonian 中，可以将势能看做： <span
+class="math display">\[
+U = E_L \frac{\phi^2}{2}-E_J \cos\phi
+\]</span>
+我们取中等大小的电感，于是这个势能就相当于是一个抛物线加上一个余弦震荡所产生的坡，如下图所示，这个势能被称作“搓衣板势”。通过适当的参数控制，我们就可以使得某个小势阱中刚好容纳两个能级，这两个能级便可以作为量子比特
+<span class="math inline">\(|0\rangle\)</span> 与 <span
+class="math inline">\(|1\rangle\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Phase_Qubits.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 6.
+搓衣板势与相位量子比特</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="电荷量子比特">电荷量子比特</h3>
+<p>如果我们把电感取到非常大 <span class="math inline">\(L\to
+\infty\)</span>，也就是将电感替换为开路，如图 4(d)
+所示。我们可以看到图中的虚线框其实与其他电路是断开的，形成了一个孤立的岛，被称作库伯对岛。这是因为虚线框只能通过约瑟夫森结来与外界交换电荷，而约瑟夫森结中只能流过库伯对，也就是说电荷只能成对地进出这座“孤岛”。而由于电感项被抹去了，只剩下了电容项和约瑟夫森项，哈密顿量就变成了
+<span class="math display">\[
+H=E_c(\hat{n}-n_g)^2 - E_J \cos \phi
+\]</span> 第一项加上了一个<span
+class="math inline">\(n_g\)</span>，代表的是孤岛中库伯对的数量。我们可以通过外加门电压来调节岛上的电荷。由于岛上的电荷是量子化的，可以将其作为量子比特的态，如
+图7.(c) 所示。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Charge_Qubits.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 7. 电荷超导量子比特</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="磁通量子比特">磁通量子比特</h3>
+<p>先看一个超导量子干涉器件(SQUID)，如图 8(a)
+所示，就是包含一个约瑟夫森结的超导环器件，被称作 rf-SQUID.
+约瑟夫森结两端具有相位差：<span
+class="math inline">\(\phi/2\pi=\Phi/\Phi_0+z\)</span>, 其中 <span
+class="math inline">\(z\)</span> 是整数，<span
+class="math inline">\(\Phi_0\)</span>
+是磁通量子。所以超导环的势能可以写作： <span class="math display">\[
+U=-E_J\cos\frac{2\pi\Phi}{\Phi_0} + E_L(\Phi-\Phi_{ext})^2
+\]</span> 其中 <span class="math inline">\(\Phi_{ext}\)</span>
+是外加的磁通。当外加磁通 <span
+class="math inline">\(\Phi_{ext}=\Phi_0/2\)</span> 时，其势能曲线如图
+8(b) 所示。粒子处于左右两个不同势阱的时候，就对应于 rf-SQUID
+中的电流顺时针或者逆时针方向流动。因此这两个态就可以用来组成量子比特
+<span class="math inline">\(|0\rangle\)</span> 和 <span
+class="math inline">\(|1\rangle\)</span>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Flux_Qubits.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 8. 磁通量子比特</em></td>
+</tr>
+</tbody>
+</table>
+<h2 id="单比特的操纵">单比特的操纵</h2>
+<p>Transmon量子比特的控制电路如下图所示，右边的线路为<span
+class="math inline">\(XY\)</span>控制线，左边的是<span
+class="math inline">\(Z\)</span>控制线。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Control_Qubits.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 9. 量子比特的操纵</em></td>
+</tr>
+</tbody>
+</table>
+<p><span
+class="math inline">\(XY\)</span>控制线通过电容与量子比特相连接，并且在线路上施加典型的余弦驱动电流
+<span class="math inline">\(\Omega\cos(\omega_d t + \phi)\)</span>.
+由于电容的耦合方式，就会产生如下所示的耦合Hamiltonian <span
+class="math display">\[
+\hat{H}(t)=-\frac{1}{2} \hbar \omega_{10} \hat{\sigma}_z+\hbar
+\frac{\Omega}{2}\left(\hat{b}^{\dagger} e^{-i\left(\omega_d
+t+\phi\right)}+\hat{b} e^{i\left(\omega_d t+\phi\right)}\right)
+\]</span> 对此哈密顿量做旋波近似，就可以得到 <span
+class="math display">\[
+\hat{H}=\frac{1}{2} \hbar \delta_q \hat{\sigma}_z+\frac{1}{2} \hbar
+\Omega\left(\cos \phi \hat{\sigma}_x+\sin \phi \hat{\sigma}_y\right) .
+\]</span> 通过定义方向矢量 <span
+class="math inline">\(\mathbf{n}=\left(\cos \phi, \sin \phi, \delta_q /
+\Omega\right)\)</span>, 系统的演化算符就可以写作： <span
+class="math display">\[
+\hat{U}(\mathbf{n}, t)=e^{-\frac{i \Omega t}{2} \mathbf{n} \cdot
+\boldsymbol{\sigma}}
+\]</span> 另一方面，通过对 <span class="math inline">\(Z\)</span>
+控制线上施加电流来改变其外部磁通<span
+class="math inline">\(\Phi_{ext}\)</span>，就可以调控 <span
+class="math inline">\(\omega_{10}\)</span>.</p>
+<h2 id="两比特之间的耦合">两比特之间的耦合</h2>
+<h3 id="电容电感耦合">电容/电感耦合</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="CL_Qubits_Couple.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 9.
+两个超导量子比特通过电容或者电感来耦合</em></td>
+</tr>
+</tbody>
+</table>
+<p>超导量子比特之间，或者超导量子比特与谐振腔之间的直接耦合，主要有两种方式：电容耦合或者电感来耦合。如图所示，其Hamiltonian可以写作
+<span class="math display">\[
+\begin{aligned}
+&amp;H=\sum_{i=1,2}\left[4 E_{C, i} n_i^2-E_{J, i} \cos \phi_i\right]+4
+e^2 \frac{C_g}{C_1 C_2} n_1 n_2 \\
+&amp;H=\sum_{i=1,2}\left[4 E_{C, i} n_i^2+\frac{1}{2} E_{L, i}
+\phi_i^2-E_{J, i} \cos \phi_i\right]+M_{12} I_{c 1} \sin \phi_1 I_{c 2}
+\sin \phi_2
+\end{aligned}
+\]</span> Consider the quantized conditions <span
+class="math inline">\(n\propto i(a_i^\dagger - a_i)\)</span> and <span
+class="math inline">\(\phi \propto (a_i^\dagger + a_i)\)</span>, then
+the coupling term can be written as <span class="math display">\[
+\begin{align}
+n_1 n_2 &amp;= i(a_1^\dagger - a_1) \cdot i(a_2^\dagger - a_2) \\
+&amp;\approx a_1^\dagger a_2 + a_1 a_2^\dagger
+\end{align}
+\]</span> 最后一步用到了旋波近似。电容所产生的耦合强度一般有<span
+class="math inline">\(g/2\pi \sim
+20\)</span>MHz，远小于量子比特的频率<span
+class="math inline">\(\omega_1\)</span>与<span
+class="math inline">\(\omega_2\)</span>.
+对于电感的耦合项也是类似的结果。</p>
+<h3 id="coupler">Coupler</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="coupler.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 10. Coupler</em> [1]</td>
+</tr>
+</tbody>
+</table>
+<p>还有一种操纵性更好的方式是 coupler，将两个超导量子比特 <span
+class="math inline">\(Q_1\)</span> 与 <span
+class="math inline">\(Q_2\)</span>
+通过中间再加一个量子比特来进行耦合。其哈密顿量可以直接写作 <span
+class="math display">\[
+\begin{aligned}
+H &amp; =\sum_{j=1,2} \frac{1}{2} \omega_j \sigma_j^z+\frac{1}{2}
+\omega_{\mathrm{c}} \sigma_{\mathrm{c}}^z+\sum_{j=1,2}
+g_j\left(\sigma_j^{+} \sigma_{\mathrm{c}}^{-}+\sigma_j^{-}
+\sigma_{\mathrm{c}}^{+}\right) \\
+&amp; +g_{12}\left(\sigma_1^{+} \sigma_2^{-}+\sigma_2^{-}
+\sigma_1^{+}\right)
+\end{aligned}
+\]</span> 可以看到量子比特 <span class="math inline">\(Q_1\)</span> 与
+<span class="math inline">\(Q_2\)</span>
+之间有两个耦合通道：一个是量子比特之间直接的长程耦合 <span
+class="math inline">\(g_{12}\)</span>，而另一个通道则是二阶的过程，通过中间量子比特来实现。因此，量子比特
+<span class="math inline">\(Q_1\)</span> 与 <span
+class="math inline">\(Q_2\)</span> 之间的等效耦合就可以写作： <span
+class="math display">\[
+\widetilde{H}=\sum_{j=1,2} \frac{1}{2} \widetilde{\omega}_j
+\sigma_j^z+\left[\frac{g_1 g_2}{\Delta}+g_{12}\right]\left(\sigma_1^{+}
+\sigma_2^{-}+\sigma_2^{-} \sigma_1^{+}\right)
+\]</span> 其中 <span
+class="math inline">\(\widetilde{\omega}_j=\omega_j+\frac{g_j^2}{\Delta_j}\)</span>
+是shift之后的能级。我们可以看到，现在 <span
+class="math inline">\(Q_1\)</span> 与 <span
+class="math inline">\(Q_2\)</span> 之间的等效耦合是 <span
+class="math inline">\(\widetilde{g}=g_1g_2/\Delta +
+g_{12}\)</span>，因此我们可以通过控制 <span
+class="math inline">\(\Delta\)</span>
+和这几个耦合强度来调节等效的耦合强度 <span
+class="math inline">\(\widetilde{g}\)</span>，从而可以将 <span
+class="math inline">\(\widetilde{g}\)</span> 调节为正、负、或者零。</p>
+<h2 id="信息读出">信息读出</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img src="Readout_Qubits.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>图 11.
+非破坏性测量：色散读取</em></td>
+</tr>
+</tbody>
+</table>
+<p>在超导量子系统中，想要读取量子比特的状态，有一种非破坏性的测量方法，叫做色散读取方法。在这种方法中，用一个光腔与量子比特进行耦合，可以得到一个哈密顿量：
+<span class="math display">\[
+H=-\frac{\omega_q}{2} \sigma^z+\omega_r a^{+} a+g\left(\sigma^{+}
+a+\sigma^{-} a^{+}\right) .
+\]</span> 其中 <span class="math inline">\(a\)</span>
+是光子的湮灭算符。考虑失谐 <span class="math inline">\(\Delta\)</span>
+远大于耦合 <span class="math inline">\(g\)</span>
+的情况，再做一个幺正变换 <span class="math inline">\(\exp[−g(\sigma+a −
+\sigma− a^+)/\Delta]\)</span>，就可以得到 <span class="math display">\[
+H=-\frac{\omega_q}{2} \sigma^z+\left(\omega_r+\frac{g^2}{\Delta}
+\sigma^z\right) a^{+} a .
+\]</span>
+从这个式子中就可以看到，光腔中光子的等效频率是与量子比特的状态相关的。如果量子比特处在
+<span class="math inline">\(|1\rangle\)</span> 态上，其光波频率就是
+<span class="math inline">\(\omega_r+\frac{g^2}{\Delta}\)</span>.
+如果量子比特处在 <span class="math inline">\(|0\rangle\)</span>
+态上，其光波频率就是 <span
+class="math inline">\(\omega_r-\frac{g^2}{\Delta}\)</span>.
+因此通过对光波频率的测量，就可以非破坏性地知道量子比特的状态。</p>
+<h2 id="量子模拟">量子模拟</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><img
+src="Quantum_Simulation.png" srcset="/img/loading.gif" lazyload /></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>Figure 12. Analogue simulation and
+digital simulation</em></td>
+</tr>
+</tbody>
+</table>
+<p>Analogue Simulation</p>
+<ul>
+<li>缺点:
+<ul>
+<li>只能实现特定的模型，</li>
+<li>没有错误编码和修正，而错误又是不可避免的。参数的矫正可能会有问题，实现的Hamiltonian也会不完美，还有退相干和噪音的干扰。</li>
+</ul></li>
+</ul>
+<hr />
+<div id="refer-coupler">
+
+</div>
+<ul>
+<li>[1] <a
+target="_blank" rel="noopener" href="https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.10.054062">Yan,
+Fei, et al. "Tunable coupling scheme for implementing high-fidelity
+two-qubit gates." <em>Physical Review Applied</em> 10.5 (2018):
+054062.</a></li>
+<li>[2] <a
+href="">刘伟洋,于海峰,薛光明等.超导量子比特与量子计算[J].物理教学,2013,35(07):2-5.</a></li>
+<li>[3] <a
+href="">董宁,王轶文,于扬等.超导量子比特的物理实现[J].自然科学进展,2008(07):721-726.</a></li>
+<li>[4] <a
+href="">宿非凡,杨钊华,范桁等.超导量子比特[J].大学物理,2021,40(07):1-7+11.DOI:10.16854/j.cnki.1000-0712.210045.</a></li>
+<li>[5] <a href="">徐达.
+基于超导量子比特的量子模拟[D].浙江大学,2018.</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Physics/" class="category-chain-item">Physics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Quantum-Computing/">#Quantum Computing</a>
+      
+        <a href="/tags/Superconducting-Quantum-Qubits/">#Superconducting Quantum Qubits</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>超导量子比特：基本知识</div>
+      <div>https://quantum-cyborg.github.io/2022/10/20/Physics/SC Qubits - Basic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>碳基机器</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/08/Physics/CS_fileld_theory_IQHE/" title="非常简略的笔记：Chern-Simons Field Theory for IQHE">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">非常简略的笔记：Chern-Simons Field Theory for IQHE</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/11/Physics/Stabilizer-codes/" title="Stabilizer Codes (I)">
+                        <span class="hidden-mobile">Stabilizer Codes (I)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
